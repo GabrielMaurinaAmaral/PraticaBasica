@@ -1,0 +1,5 @@
+num=str(input("enter a number"))
+print("undidade: {}".format(num[3]))
+print("dezena: {}".format(num[2]))
+print("centena: {}".format(num[1]))
+print("milhar: {}".format(num[0]))
