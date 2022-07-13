@@ -1,0 +1,1 @@
+frase=str(input("Enter a number"))
