@@ -1,0 +1,6 @@
+print(3 in range(1, 6))
+print(3 and 5 in range(1, 6))
+print(7 in range(1, 6))
+print(3 and 7 in range(1, 6))
+print((7 or 3) in range(1, 6))
+print(((3 and 5) or (3 and 7)) in range(1, 6))

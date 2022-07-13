@@ -1,0 +1,14 @@
+{
+    "python.testing.pytestArgs": [
+        "Curso Pythom"
+    ],
+    "python.testing.unittestEnabled": true,
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./Curso Pythom",
+        "-p",
+        "*test.py"
+    ]
+}
