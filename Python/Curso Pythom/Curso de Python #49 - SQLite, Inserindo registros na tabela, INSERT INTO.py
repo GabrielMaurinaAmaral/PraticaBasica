@@ -1,9 +1,5 @@
-import email
-from importlib import import_module
 import sqlite3
 from sqlite3 import Error
-
-from colorama import Cursor
 
 caminho = "C:/SQlite/Curso Python/Curso Python - Agenda.db"
 

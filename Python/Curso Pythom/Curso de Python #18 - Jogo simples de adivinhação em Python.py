@@ -12,4 +12,5 @@ while(sorteado != jogador):
     erros += 1
     jogador = int(input("adivinha um numero de 0 a 100: "))
 
-print(f"parabens vc acertou o numero era {sorteado} vc preciso de apenas {erros} tentativas")
+print(
+    f"parabens vc acertou o numero era {sorteado} vc preciso de apenas {erros} tentativas")
