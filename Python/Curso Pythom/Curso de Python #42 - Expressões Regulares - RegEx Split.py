@@ -1,10 +1,7 @@
 import re
 
-texto = "gabriel maurina amral é um gostoso uiiiiiii"
-pesquisa = str(input("pesquisar: "))
-resposta = re.split(pesquisa, texto)
+texto = "gabriel@gmail.com"
+texto = re.split("@", texto)
+texto = re.split(".", texto[0])
 
-print(resposta)
-
-for t in resposta:
-    print(t)
+print(texto)

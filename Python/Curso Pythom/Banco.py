@@ -2,34 +2,34 @@ import sqlite3
 from sqlite3 import Error
 import os
 
-pasta_App = os.path.dirname(__file__)
-nome_Banco = pasta_App+"\\Curso Python - Agenda.db"
+pastaApp = os.path.dirname(__file__)
+nomeBanco = pastaApp+"\\Curso Python - Nomes.db"
 
 
-def criar_Conexao_Banco():
+def conexaoBanco():
     conexao = None
     try:
-        conexao = sqlite3.connect(nome_Banco)
+        conexao = sqlite3.connect(nomeBanco)
     except Error as erro:
         print(erro)
     return conexao
 
 
-def dql(query):  # select
-    variavel_connexao = criar_Conexao_Banco()
-    cursor = variavel_connexao.cursor()
-    cursor.execute(query)
-    resultado = cursor.fetchall()
-    variavel_connexao.close()
+def dql(query):
+    variavel_conexao = conexaoBanco()
+    c = variavel_conexao.cursor()
+    c.execute(query)
+    resultado = c.fetchall()
+    variavel_conexao.close()
     return resultado
 
 
-def dml(query):  # insert, update, delete
+def dml(query):
     try:
-        variavel_connexao = criar_Conexao_Banco()
-        cursor = variavel_connexao.cursor()
-        cursor.execute(query)
-        variavel_connexao.commit()
-        variavel_connexao.close()
+        variavel_conexao = conexaoBanco()
+        c = variavel_conexao.cursor()
+        c.execute(query)
+        variavel_conexao.commit()
+        variavel_conexao.close()
     except Error as erro:
         print(erro)
