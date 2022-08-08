@@ -20,9 +20,9 @@ public:
 
     static int how_many_instances() { return howmany; }
 
-    Date &set_day(int);
-    Date &set_month(int);
-    Date &set_year(int);
+    Date set_day(int);
+    Date set_month(int);
+    Date set_year(int);
 };
 #endif
 
