@@ -1,5 +1,4 @@
 carro = {
-    
     "fabrica": "Honda",
     "Modelo": "HRV",
     "Ano": "2016",

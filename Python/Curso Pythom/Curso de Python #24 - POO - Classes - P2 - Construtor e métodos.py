@@ -6,7 +6,8 @@ class Carro:
     def __init__(self, v, l, c):
         self.velMax = v
         self.ligado = l
-        self.cor = c
+        self.cor = c  
+    
 
     def mostrar(self):
         print(f"velocidade maxima: {self.velMax}")
@@ -26,4 +27,4 @@ c2 = Carro(225, False, "branco")
 
 c2.ligar()
 c1.mostrar()
-c1.mostrar()
+c2.mostrar()

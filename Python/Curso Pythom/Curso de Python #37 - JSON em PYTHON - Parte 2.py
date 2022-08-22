@@ -30,3 +30,5 @@ pessoa = {
         {"tipo": "defesa", "habilidade": 60}
     ]
 }
+
+print(pessoa)

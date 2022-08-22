@@ -14,7 +14,7 @@ nascimento = datetime.datetime(2003, 3, 31)
 # %Y ano com quatro digitos
 # %H hora de 00 a 23
 # %I hora de 00 a 12
-# %p AM/PM
+# %p AM/PM1
 # %M minutos
 # %s segundos
 # %f microsegundos
