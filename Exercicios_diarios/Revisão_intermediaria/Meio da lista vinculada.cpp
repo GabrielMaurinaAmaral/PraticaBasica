@@ -13,5 +13,15 @@ class Solution
 public:
     ListNode *middleNode(ListNode *head)
     {
+        int cont = 0;
+        ListNode *aux = head;
+        while (head)
+        {
+            head = head->next;
+            cont += 1;
+        }
+        for (int i = 0; i < cont / 2; i++)
+            aux = aux->next;
+        return aux;
     }
 };

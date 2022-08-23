@@ -38,3 +38,7 @@ def All_Longest_Strings(inputArray):
         if len(s) == maior:
             result.append(s)
     return result
+
+
+def count_by(x, n):
+    return [x * i for i in range(1, n+1)]
