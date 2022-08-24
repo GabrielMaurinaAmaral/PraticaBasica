@@ -42,3 +42,7 @@ def All_Longest_Strings(inputArray):
 
 def count_by(x, n):
     return [x * i for i in range(1, n+1)]
+
+
+def solution(s1, s2):
+    return sum(min(s1.count(x), s2.count(x)) for x in set(s1))
