@@ -1,4 +1,4 @@
-from cgi import print_arguments
+ from cgi import print_arguments
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox

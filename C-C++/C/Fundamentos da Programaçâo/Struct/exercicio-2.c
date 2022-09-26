@@ -17,13 +17,9 @@ void calculaMedia(aluno_t aluno[], int n)
         aluno[i].media=(aluno[i].notas[0]+aluno[i].notas[1]+aluno[i].notas[2])/3;
         
         if(aluno[i].media>=6)
-        {
             printf("Aprovado!\n");
-        }
         else
-        {
             printf("Reprovado!\n");
-        }
     }
 }
 

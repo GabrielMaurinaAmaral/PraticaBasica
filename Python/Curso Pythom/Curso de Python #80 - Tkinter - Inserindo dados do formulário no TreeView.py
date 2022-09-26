@@ -7,12 +7,14 @@ def inserir():
     if variavel_id.get() == "" or variavel_nome.get() == "" or variavel_fone.get() == "":
         messagebox.showinfo(title="ERRO", message="Digite todos os dados")
         return
-    tv.insert("", "end", values=(variavel_id.get(),variavel_nome.get(), variavel_fone.get()))
-    variavel_id.delete(0,END)
-    variavel_nome.delete(0,END)
-    variavel_fone.delete(0,END)
+    tv.insert("", "end", values=(variavel_id.get(),
+              variavel_nome.get(), variavel_fone.get()))
+    variavel_id.delete(0, END)
+    variavel_nome.delete(0, END)
+    variavel_fone.delete(0, END)
     variavel_id.focus()
-    
+
+
 def deletar():
     print()
 
