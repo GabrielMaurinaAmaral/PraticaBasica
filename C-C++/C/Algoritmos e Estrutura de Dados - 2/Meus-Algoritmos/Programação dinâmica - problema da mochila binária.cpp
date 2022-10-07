@@ -10,10 +10,8 @@ int mochila_progamacao_dinamicad(int *peso, int *custo, int len, int capacidade)
     for (i = 0; i <= capacidade; i++)
         mat[i][0] = 0;
 
-    // coluna
     for (j = 1; j <= len; j++)
     {
-        // linha
         for (i = 0; i <= capacidade; i++)
             if (i - peso[j - 1] < 0)
                 mat[i][j] = mat[i][j - 1];

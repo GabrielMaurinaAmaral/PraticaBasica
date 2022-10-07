@@ -8,7 +8,7 @@ int main (void)
     int i;
     for(i=20; 25>=i; i++)
     {
-        printf("%d\n",i);
+        printf("%d\t",i);
     }
   return 0;  
 }
