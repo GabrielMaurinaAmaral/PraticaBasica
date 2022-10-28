@@ -1,4 +1,4 @@
- from cgi import print_arguments
+from cgi import print_arguments
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -8,7 +8,8 @@ def inserir():
     if variavel_id.get() == "" or variavel_nome.get() == "" or variavel_fone.get() == "":
         messagebox.showinfo(title="ERRO", message="Digite todos os dados")
         return
-    tv.insert("", "end", values=(variavel_id.get(), variavel_nome.get(), variavel_fone.get()))
+    tv.insert("", "end", values=(variavel_id.get(),
+              variavel_nome.get(), variavel_fone.get()))
     variavel_id.delete(0, END)
     variavel_nome.delete(0, END)
     variavel_fone.delete(0, END)
@@ -20,18 +21,20 @@ def deletar():
         item_selecionado = tv.selection()[0]
         tv.delete(item_selecionado)
     except:
-        messagebox.showinfo(title="ERRO", message="Selecione um elemento a ser deletado")
+        messagebox.showinfo(
+            title="ERRO", message="Selecione um elemento a ser deletado")
 
 
 def obter():
     try:
         item_selecionado = tv.selection()[0]
-        valores=tv.item(item_selecionado, "values")
+        valores = tv.item(item_selecionado, "values")
         print("ID......: " + valores[0])
         print("Nome....: " + valores[1])
         print("Telefone: " + valores[2])
     except:
-        messagebox.showinfo(title="ERRO", message="Selecione um elemento a ser mostrado")
+        messagebox.showinfo(
+            title="ERRO", message="Selecione um elemento a ser mostrado")
 
 
 app = Tk()

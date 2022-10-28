@@ -91,10 +91,9 @@ quadro_pesquisar.pack(fill="both", expand="yes", padx=10, pady=10)
 label_id = Label(quadro_pesquisar, text="Nome")
 label_id.pack(side="left")
 variavel_nome_pesquisar = Entry(quadro_pesquisar)
-variavel_nome_pesquisar.pack(side="left", padx=10)
+variavel_nome_pesquisar.pacWk(side="left", padx=10)
 
-button_pesquisar = Button(
-    quadro_pesquisar, text="Pesquisar", command=pesquisar)
+button_pesquisar = Button(quadro_pesquisar, text="Pesquisar", command=pesquisar)
 button_pesquisar.pack(side="left", padx=10)
 
 button_todos = Button(quadro_pesquisar, text="Mostrar Todos", command=popular)

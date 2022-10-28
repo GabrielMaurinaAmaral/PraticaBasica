@@ -16,3 +16,7 @@ print(f"quantiodade: {quantidade_pesquisa}")
 
 for r in resultado1:
     print(r)
+
+#compreenção de lista
+potencia = [2**i for i in range(10)]
+print(potencia)
