@@ -13,6 +13,7 @@ int main(void)
 
         printf("\nInforme o numero de coluna: ");
         scanf("%d", &coluna);
+
         printf("Informe o numero de linha: ");
         scanf("%d", &linha);
         printf("Informe um caracter: ");
@@ -22,7 +23,9 @@ int main(void)
         quadroCaract(coluna, linha, caract);
 
         printf("\nDejesa repetir o programa: ");
+
         setbuf(stdin, NULL);
+
         scanf("%c", &opcRepet);
 
     } while (opcRepet == 'S' || opcRepet == 's');

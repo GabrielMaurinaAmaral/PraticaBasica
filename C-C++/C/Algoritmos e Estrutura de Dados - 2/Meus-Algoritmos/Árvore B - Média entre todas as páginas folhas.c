@@ -14,7 +14,7 @@ struct NodeB
     int eh_no_folha;
 };
 
-NodeB *criar()
+NodeB *criar_ArvoreB()
 {
     NodeB *tree = malloc(sizeof(NodeB));
     int i;
@@ -39,7 +39,6 @@ int liberar(NodeB *tree)
 
     return 0;
 }
-
 static int busca_binaria(int key, NodeB *tree)
 {
     int ini, fim, meio;
@@ -67,24 +66,6 @@ static int busca_binaria(int key, NodeB *tree)
     return -1;
 }
 
-int pesquisaSequencial(int key, NodeB *tree)
-{
-    int i;
-
-    if (tree != NULL)
-    {
-        for (i = 0; i < tree->nro_chaves && key < tree->chaves[i]; i++)
-            ;
-
-        if ((i < tree->nro_chaves) && (key == tree->chaves[i]))
-            return 1;
-        else
-            return pesquisaSequencial(key, tree->filhos[i]);
-    }
-
-    return 0;
-}
-
 int pesquisar(int key, NodeB *tree)
 {
     int pos = busca_binaria(key, tree);
@@ -103,13 +84,11 @@ int pesquisar(int key, NodeB *tree)
 static NodeB *split_pag(NodeB *pai, int posF_cheio)
 {
     int i;
-
     NodeB *pag_esq = pai->filhos[posF_cheio];
     NodeB *pag_dir;
 
-    pag_dir = criar();
+    pag_dir = criar_ArvoreB();
     pag_dir->eh_no_folha = pag_esq->eh_no_folha;
-
     pag_dir->nro_chaves = round((N - 1) / 2);
 
     for (i = 0; i < pag_dir->nro_chaves; i++)
@@ -173,7 +152,7 @@ NodeB *inserir(NodeB *tree, int key)
 
     if (aux->nro_chaves == N - 1)
     {
-        nova_pag = criar();
+        nova_pag = criar_ArvoreB();
 
         tree = nova_pag;
 
@@ -190,40 +169,36 @@ NodeB *inserir(NodeB *tree, int key)
     return tree;
 }
 
-void conta_paginas_cheias(NodeB *tree, int *contador)
+void media_todal(NodeB *tree, int *soma, int *cont_chaves)
 {
     if (tree != NULL)
     {
-        *contador = *contador + (tree->nro_chaves == N - 1);
-
-        if (tree->filhos[0] != NULL)
+        if (tree->eh_no_folha)
         {
-            if (tree->filhos[0]->eh_no_folha)
-                for (int i = 0; i <= tree->nro_chaves; i++)
-                    *contador = *contador + (tree->filhos[0]->nro_chaves == N - 1);
-            else
-                for (int i = 0; i <= tree->nro_chaves; i++)
-                    conta_paginas_cheias(tree->filhos[i], contador);
+            for (int i = 0; i < tree->nro_chaves; i++)
+                *soma += tree->chaves[i];
+            *cont_chaves += tree->nro_chaves;
         }
+        else
+            for (int i = 0; i < tree->nro_chaves; i++)
+                media_todal(tree->filhos[i], soma, cont_chaves);
     }
 }
 
 int main()
 {
-    NodeB *tree = criar();
-    int n, x, contador = 0;
+    NodeB *arvoreB = criar_ArvoreB();
+    int len, num, *soma = 0, *cont = 0;
 
-    scanf("%d", &n);
-    while (n > 0)
+    scanf("%d", &len);
+    for (int i = 0; i < len; i++)
     {
-        scanf("%d", &x);
-        tree = inserir(tree, x);
-        n--;
+        scanf("%d", &num);
+        arvoreB = inserir(arvoreB, num);
     }
 
-    conta_paginas_cheias(tree, &contador);
-
-    printf("%d", contador);
+    media_todal(arvoreB, &soma, &cont);
+    printf("%d %d", soma, cont);
 
     return 0;
 }

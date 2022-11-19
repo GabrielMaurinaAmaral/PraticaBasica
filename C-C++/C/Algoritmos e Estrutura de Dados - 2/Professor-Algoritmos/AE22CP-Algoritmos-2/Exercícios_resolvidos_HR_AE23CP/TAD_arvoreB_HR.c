@@ -6,16 +6,15 @@
 
 typedef struct NodeB NodeB;
 
-struct NodeB
-{
-    int nro_chaves;
-    int chaves[N - 1];
-    NodeB *filhos[N];
-    int eh_no_folha;
+struct NodeB{
+     int nro_chaves;
+     int chaves[N - 1];
+     NodeB *filhos[N];
+     int eh_no_folha;
 };
 
-NodeB *criar()
-{
+
+NodeB* criar(){
     NodeB *tree = malloc(sizeof(NodeB));
     int i;
 
@@ -28,10 +27,9 @@ NodeB *criar()
     return tree;
 }
 
-int liberar(NodeB *tree)
-{
-    if (tree != NULL)
-    {
+
+int liberar(NodeB *tree){
+    if (tree != NULL){
         free(tree);
 
         return 1;
@@ -40,17 +38,15 @@ int liberar(NodeB *tree)
     return 0;
 }
 
-static int busca_binaria(int key, NodeB *tree)
-{
+
+static int busca_binaria(int key, NodeB *tree){
     int ini, fim, meio;
 
-    if (tree != NULL)
-    {
+    if (tree != NULL){
         ini = 0;
         fim = tree->nro_chaves - 1;
 
-        while (ini <= fim)
-        {
+        while (ini <= fim){
             meio = (ini + fim) / 2;
 
             if (tree->chaves[meio] == key)
@@ -67,30 +63,27 @@ static int busca_binaria(int key, NodeB *tree)
     return -1;
 }
 
-int pesquisaSequencial(int key, NodeB *tree)
-{
+
+int pesquisaSequencial(int key, NodeB *tree){
     int i;
 
-    if (tree != NULL)
-    {
-        for (i = 0; i < tree->nro_chaves && key < tree->chaves[i]; i++)
-            ;
+    if (tree != NULL){
+        for (i = 0; i < tree->nro_chaves && key < tree->chaves[i]; i++);
 
-        if ((i < tree->nro_chaves) && (key == tree->chaves[i]))
-            return 1;
+	if ((i < tree->nro_chaves) && (key == tree->chaves[i]))
+        	return 1;
         else
-            return pesquisaSequencial(key, tree->filhos[i]);
+        	return pesquisaSequencial(key, tree->filhos[i]);
     }
 
     return 0;
 }
 
-int pesquisar(int key, NodeB *tree)
-{
+
+int pesquisar(int key, NodeB *tree){
     int pos = busca_binaria(key, tree);
 
-    if (pos >= 0)
-    {
+    if (pos >= 0){
         if (tree->chaves[pos] == key)
             return 1;
         else
@@ -100,15 +93,15 @@ int pesquisar(int key, NodeB *tree)
     return 0;
 }
 
-static NodeB *split_pag(NodeB *pai, int posF_cheio)
-{
-    int i;
 
+static NodeB * split_pag(NodeB *pai, int posF_cheio){
+    int i;
+    
     NodeB *pag_esq = pai->filhos[posF_cheio];
     NodeB *pag_dir;
 
     pag_dir = criar();
-    pag_dir->eh_no_folha = pag_esq->eh_no_folha;
+    pag_dir->eh_no_folha = pag_esq->eh_no_folha; 
 
     pag_dir->nro_chaves = round((N - 1) / 2);
 
@@ -129,31 +122,29 @@ static NodeB *split_pag(NodeB *pai, int posF_cheio)
     pai->chaves[posF_cheio] = pag_dir->chaves[0];
     pai->nro_chaves++;
 
-    for (i = 0; i < pag_dir->nro_chaves; i++)
+    for (i = 0; i < pag_dir->nro_chaves ; i++)
         pag_dir->chaves[i] = pag_dir->chaves[i + 1];
 
     pag_dir->nro_chaves--;
 
+    
     return pai;
 }
 
-static NodeB *inserir_pagina_nao_cheia(NodeB *tree, int key)
-{
+
+static NodeB * inserir_pagina_nao_cheia(NodeB *tree, int key){
     int i;
     int pos = busca_binaria(key, tree);
 
-    if (tree->eh_no_folha)
-    {
+    if (tree->eh_no_folha){
         for (i = tree->nro_chaves; i > pos; i--)
             tree->chaves[i] = tree->chaves[i - 1];
 
         tree->chaves[i] = key;
         tree->nro_chaves++;
-    }
-    else
-    {
-        if (tree->filhos[pos]->nro_chaves == N - 1)
-        {
+
+    }else{
+        if (tree->filhos[pos]->nro_chaves == N - 1){
             tree = split_pag(tree, pos);
 
             if (key > tree->chaves[pos])
@@ -161,69 +152,30 @@ static NodeB *inserir_pagina_nao_cheia(NodeB *tree, int key)
         }
 
         tree->filhos[pos] = inserir_pagina_nao_cheia(tree->filhos[pos], key);
+
     }
 
     return tree;
 }
 
-NodeB *inserir(NodeB *tree, int key)
-{
+
+NodeB * inserir(NodeB *tree, int key){
     NodeB *aux = tree;
     NodeB *nova_pag;
 
-    if (aux->nro_chaves == N - 1)
-    {
+    if (aux->nro_chaves == N - 1){
         nova_pag = criar();
-
+        
         tree = nova_pag;
-
+        
         nova_pag->eh_no_folha = 0;
         nova_pag->filhos[0] = aux;
         nova_pag = split_pag(nova_pag, 0);
         nova_pag = inserir_pagina_nao_cheia(nova_pag, key);
 
         tree = nova_pag;
-    }
-    else
+    }else
         tree = inserir_pagina_nao_cheia(aux, key);
 
     return tree;
-}
-
-void conta_paginas_cheias(NodeB *tree, int *contador)
-{
-    if (tree != NULL)
-    {
-        *contador = *contador + (tree->nro_chaves == N - 1);
-
-        if (tree->filhos[0] != NULL)
-        {
-            if (tree->filhos[0]->eh_no_folha)
-                for (int i = 0; i <= tree->nro_chaves; i++)
-                    *contador = *contador + (tree->filhos[0]->nro_chaves == N - 1);
-            else
-                for (int i = 0; i <= tree->nro_chaves; i++)
-                    conta_paginas_cheias(tree->filhos[i], contador);
-        }
-    }
-}
-
-int main()
-{
-    NodeB *tree = criar();
-    int n, x, contador = 0;
-
-    scanf("%d", &n);
-    while (n > 0)
-    {
-        scanf("%d", &x);
-        tree = inserir(tree, x);
-        n--;
-    }
-
-    conta_paginas_cheias(tree, &contador);
-
-    printf("%d", contador);
-
-    return 0;
 }

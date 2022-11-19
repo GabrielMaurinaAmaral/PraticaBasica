@@ -190,28 +190,23 @@ NodeB *inserir(NodeB *tree, int key)
     return tree;
 }
 
-void conta_paginas_cheias(NodeB *tree, int *contador)
+int media_raiz(NodeB *tree)
 {
+    int media = 0;
     if (tree != NULL)
     {
-        *contador = *contador + (tree->nro_chaves == N - 1);
-
-        if (tree->filhos[0] != NULL)
-        {
-            if (tree->filhos[0]->eh_no_folha)
-                for (int i = 0; i <= tree->nro_chaves; i++)
-                    *contador = *contador + (tree->filhos[0]->nro_chaves == N - 1);
-            else
-                for (int i = 0; i <= tree->nro_chaves; i++)
-                    conta_paginas_cheias(tree->filhos[i], contador);
-        }
+        for (int i = 0; i < tree->nro_chaves; i++)
+            media += tree->chaves[i];
+        media /= tree->nro_chaves;
     }
+
+    return media;
 }
 
 int main()
 {
     NodeB *tree = criar();
-    int n, x, contador = 0;
+    int n, x;
 
     scanf("%d", &n);
     while (n > 0)
@@ -221,9 +216,7 @@ int main()
         n--;
     }
 
-    conta_paginas_cheias(tree, &contador);
-
-    printf("%d", contador);
+    printf("%d", media_raiz(tree));
 
     return 0;
 }

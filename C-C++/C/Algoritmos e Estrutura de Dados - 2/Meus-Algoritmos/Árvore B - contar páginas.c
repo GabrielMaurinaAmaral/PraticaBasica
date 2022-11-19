@@ -190,20 +190,19 @@ NodeB *inserir(NodeB *tree, int key)
     return tree;
 }
 
-void conta_paginas_cheias(NodeB *tree, int *contador)
+void conta_paginas(NodeB *tree, int *contador)
 {
     if (tree != NULL)
     {
-        *contador = *contador + (tree->nro_chaves == N - 1);
+        *contador = *contador + 1;
 
         if (tree->filhos[0] != NULL)
         {
             if (tree->filhos[0]->eh_no_folha)
-                for (int i = 0; i <= tree->nro_chaves; i++)
-                    *contador = *contador + (tree->filhos[0]->nro_chaves == N - 1);
+                *contador = *contador + tree->nro_chaves + 1;
             else
                 for (int i = 0; i <= tree->nro_chaves; i++)
-                    conta_paginas_cheias(tree->filhos[i], contador);
+                    conta_paginas(tree->filhos[i], contador);
         }
     }
 }
@@ -221,7 +220,7 @@ int main()
         n--;
     }
 
-    conta_paginas_cheias(tree, &contador);
+    conta_paginas(tree, &contador);
 
     printf("%d", contador);
 

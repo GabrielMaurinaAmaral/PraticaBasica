@@ -190,28 +190,24 @@ NodeB *inserir(NodeB *tree, int key)
     return tree;
 }
 
-void conta_paginas_cheias(NodeB *tree, int *contador)
+int altura_arvoreB(NodeB *tree)
 {
-    if (tree != NULL)
-    {
-        *contador = *contador + (tree->nro_chaves == N - 1);
+    NodeB *aux = tree;
+    int altura = -1;
 
-        if (tree->filhos[0] != NULL)
-        {
-            if (tree->filhos[0]->eh_no_folha)
-                for (int i = 0; i <= tree->nro_chaves; i++)
-                    *contador = *contador + (tree->filhos[0]->nro_chaves == N - 1);
-            else
-                for (int i = 0; i <= tree->nro_chaves; i++)
-                    conta_paginas_cheias(tree->filhos[i], contador);
-        }
+    while (aux != NULL)
+    {
+        altura++;
+        aux = aux->filhos[0];
     }
+
+    return altura;
 }
 
 int main()
 {
     NodeB *tree = criar();
-    int n, x, contador = 0;
+    int n, x;
 
     scanf("%d", &n);
     while (n > 0)
@@ -221,9 +217,7 @@ int main()
         n--;
     }
 
-    conta_paginas_cheias(tree, &contador);
-
-    printf("%d", contador);
+    printf("%d", altura_arvoreB(tree));
 
     return 0;
 }

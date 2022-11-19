@@ -14,6 +14,8 @@ void setup() {
 void loop() {
   int lido=analogRead(pot);
   byte ang=map(lido,0,1023,0,179);
+
+for(int i=0ç 
   
   ser.write(ang);
   

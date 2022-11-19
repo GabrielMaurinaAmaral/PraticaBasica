@@ -162,7 +162,5 @@ int main()
         arv = inserirAVL(arv, n, &g);
     }
 
-
     return 0;
 }
-
