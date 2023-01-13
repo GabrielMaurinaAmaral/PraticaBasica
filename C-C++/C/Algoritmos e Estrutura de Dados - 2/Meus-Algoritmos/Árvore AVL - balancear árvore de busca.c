@@ -1,33 +1,15 @@
 #include <stdio.h>
+#include <string.h>
+#include <math.h>
 #include <stdlib.h>
-typedef struct NodeAVL NodeAVL;
-typedef struct Node Node;
 
-struct Node
-{
-    int item;
-    struct Node *left;
-    struct Node *right;
-};
+typedef struct NodeAVL NodeAVL;
 
 struct NodeAVL
 {
-    int item;
-    int fb;
-    struct NodeAVL *left;
-    struct NodeAVL *right;
+    int item, fb;
+    struct NodeAVL *left, *right;
 };
-
-Node *criar(int item)
-{
-    Node *tree = (Node *)malloc(sizeof(Node));
-
-    tree->item = item;
-    tree->left = NULL;
-    tree->right = NULL;
-
-    return tree;
-}
 
 NodeAVL *criar_AVL(int item)
 {
@@ -37,18 +19,6 @@ NodeAVL *criar_AVL(int item)
     tree->fb = 0;
     tree->left = NULL;
     tree->right = NULL;
-
-    return tree;
-}
-
-Node *inserir(int item, Node *tree)
-{
-    if (tree == NULL)
-        tree = criar(item);
-    else if (item < tree->item)
-        tree->left = inserir(item, tree->left);
-    else if (item > tree->item)
-        tree->right = inserir(item, tree->right);
 
     return tree;
 }
@@ -125,12 +95,9 @@ static NodeAVL *rotateR(NodeAVL *tree)
 
 NodeAVL *inserirAVL(NodeAVL *tree, int value, int *grown)
 {
-    NodeAVL *auxA, *auxB;
-
     if (tree == NULL)
     {
         tree = criar_AVL(value);
-
         *grown = 1;
     }
     else if (value < tree->item)
@@ -181,44 +148,27 @@ NodeAVL *inserirAVL(NodeAVL *tree, int value, int *grown)
     return tree;
 }
 
-NodeAVL *abb_2_avl(Node *tree, NodeAVL *avl)
-{
-    int g = 0;
-    if (tree != NULL)
-    {
-        avl = inserirAVL(avl, tree->item, &g);
-        avl = abb_2_avl(tree->left, avl);
-        avl = abb_2_avl(tree->right, avl);
-    }
-
-    return avl;
-}
-
-void imprimirPrefix(NodeAVL *tree)
+int soma_fb(NodeAVL *tree)
 {
     if (tree != NULL)
-    {
-        printf("%d ", tree->item);
-        imprimirPrefix(tree->left);
-        imprimirPrefix(tree->right);
-    }
+        return tree->fb + soma_fb(tree->right) + soma_fb(tree->left);
+    else
+        return 0;
 }
 
 int main()
 {
-    NodeAVL *arv;
-    Node *arvore;
-    int size, n;
+    int nodes, num, grown;
+    NodeAVL *tree = NULL;
+    scanf("%d", &nodes);
 
-    scanf("%d", &size);
-    for (int i = 1; i < size; i++)
+    for (int i = 0; i < nodes; i++)
     {
-        scanf("%d", &n);
-        arvore = inserir(n, arvore);
+        scanf("%d", &num);
+        tree = inserirAVL(tree, num, &grown);
     }
 
-    arv = abb_2_avl(arvore, arv);
-    imprimirPrefix(arv);
+    printf("%d", soma_fb(tree));
 
     return 0;
 }

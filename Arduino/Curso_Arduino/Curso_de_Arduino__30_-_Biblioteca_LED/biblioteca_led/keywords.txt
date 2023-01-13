@@ -1,0 +1,13 @@
+#Construtor da classe
+Biblioteca_LED KEYWORDS1
+
+#Métodos 
+acender KEYWORDS2
+
+apagar KEYWORDS2
+
+acender_t KEYWORDS2
+
+apagar_t KEYWORDS2
+
+piscar KEYWORDS2
