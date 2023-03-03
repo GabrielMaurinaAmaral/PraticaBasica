@@ -5,6 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "AULA_1",
+            "request": "launch",
+            "mainClass": "AULA_1",
+            "projectName": "PraticaBasica_9baa93b"
+        },
+        {
+            "type": "java",
+            "name": "HelloWord",
+            "request": "launch",
+            "mainClass": "HelloWord",
+            "projectName": "PraticaBasica_9baa93b"
+        },
+        {
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
