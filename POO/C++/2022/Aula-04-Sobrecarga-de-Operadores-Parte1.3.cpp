@@ -1,6 +1,4 @@
 #include "Aula-04-Sobrecarga-de-Operadores-Parte1.2.cpp"
-#include <iostream>
-using namespace std;
 
 int main()
 {

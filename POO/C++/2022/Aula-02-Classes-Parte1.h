@@ -27,7 +27,7 @@ private:
 
 public:
     Circle();
-    Circle(float, int = 0, int = 0);
+    Circle(float = 0.0, int = 0, int = 0);
     ~Circle() {}
 
     // funções membros interface

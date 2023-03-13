@@ -1,5 +1,7 @@
 #ifndef COMPLEXO_H
 #define COMPLEXO_H
+#include <iostream>
+using namespace std;
 
 class Complexo
 {

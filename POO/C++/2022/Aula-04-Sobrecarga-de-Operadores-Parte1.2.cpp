@@ -1,6 +1,4 @@
 #include "Aula-04-Sobrecarga-de-Operadores-Parte1.1.h"
-#include <iostream>
-using namespace std;
 
 Complexo::Complexo(float r, float i)
 {
