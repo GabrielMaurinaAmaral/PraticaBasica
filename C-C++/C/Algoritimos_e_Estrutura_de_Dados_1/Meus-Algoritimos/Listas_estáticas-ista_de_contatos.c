@@ -4,37 +4,47 @@
 #include <stdlib.h>
 #define TAMANHO_MAX 100
 
-typedef struct LISTA{
+typedef struct Lista
+{
     char item[TAMANHO_MAX][255];
     int tam;
-}LISTA;
+} Lista;
 
-LISTA *criar_LISTA(){
-    LISTA*l=(LISTA *)malloc(sizeof(LISTA));
+Lista *criar_LISTA()
+{
+    Lista *l = (Lista *)malloc(sizeof(Lista));
     l->tam = 0;
     return l;
 }
 
-int LISTA_vazia(LISTA *l){
-    return (l==NULL)||(l->tam==0);
+int LISTA_vazia(Lista *l)
+{
+    return (l == NULL) || (l->tam == 0);
 }
 
-int LISTA_cheia(LISTA *l){
-    return (l!=NULL)&&(l->tam==TAMANHO_MAX);
+int LISTA_cheia(Lista *l)
+{
+    return (l != NULL) && (l->tam == TAMANHO_MAX);
 }
 
-int substr(char str[],char substr[]){
-    int i,j,auxf;
-    if (strlen(substr)>strlen(str)){
+int substr(char str[], char substr[])
+{
+    int i, j, aux;
+    if (strlen(substr) > strlen(str))
+    {
         return 0;
     }
-    else{
-        for (i=0;i<(strlen(str)-strlen(substr)+1); i++){
-            auxf = 0;
-            for (j=i;((j<(i+strlen(substr)))&&(substr[j-i]==str[j])); j++){
-                auxf++;
-            }      
-            if (auxf==strlen(substr)){
+    else
+    {
+        for (i = 0; i < (strlen(str) - strlen(substr) + 1); i++)
+        {
+            aux = 0;
+            for (j = i; ((j < (i + strlen(substr))) && (substr[j - i] == str[j])); j++)
+            {
+                aux++;
+            }
+            if (aux == strlen(substr))
+            {
                 return 1;
             }
         }
@@ -42,13 +52,13 @@ int substr(char str[],char substr[]){
     }
 }
 
-int inserir(LISTA *l, char chave[])
+int inserir(Lista *l, char chave[])
 {
     if (!LISTA_cheia(l))
     {
-         strcpy(l->item[l->tam], chave);
+        strcpy(l->item[l->tam], chave);
 
-        l->tam++; 
+        l->tam++;
 
         return 1;
     }
@@ -56,7 +66,7 @@ int inserir(LISTA *l, char chave[])
     return 0;
 }
 
-void imprimir_LISTA(LISTA *l)
+void imprimir_LISTA(Lista *l)
 {
     int i;
 
@@ -66,11 +76,10 @@ void imprimir_LISTA(LISTA *l)
         {
             printf("%s \n", l->item[i]);
         }
-        
     }
 }
 
-int liberar_LISTA(LISTA *l)
+int liberar_LISTA(Lista *l)
 {
     if (l != NULL)
     {
@@ -82,7 +91,7 @@ int liberar_LISTA(LISTA *l)
     return 0;
 }
 
-int buscar(LISTA *l, char chave[])
+int buscar(Lista *l, char chave[])
 {
     int i;
 
@@ -102,24 +111,24 @@ int buscar(LISTA *l, char chave[])
 
 int main()
 {
-    LISTA *contatos=criar_LISTA();
+    Lista *contatos = criar_Lista();
     char nome[255], chave[255];
     int num, i;
-    
+
     scanf("%s", chave);
     scanf("%d", &num);
-    
-    for(i=0; i<num; i++)
+
+    for (i = 0; i < num; i++)
     {
         scanf("%s", nome);
-        
-        if(1==substr(nome, chave))
+
+        if (1 == substr(nome, chave))
         {
             inserir(contatos, nome);
         }
     }
-    
-    imprimir_LISTA(contatos);
-    
+
+    imprimir_Lista(contatos);
+
     return 0;
 }

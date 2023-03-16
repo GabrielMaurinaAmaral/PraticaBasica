@@ -2,7 +2,6 @@ public class Aula_3_Carro {
     // atributos
     private double velocidade;
     private String marca;
-    private String modelo;
 
     // metodos
     public void acelerar(double intensidade) {}

@@ -186,7 +186,7 @@ int dividir_listaE(ListaE *l1, ListaE *l2)
 
     ListaE *auxL;
     auxL->inicio = l1->inicio;
- []   l1->inicio = l2->inicio;
+    l1->inicio = l2->inicio;
     l2->inicio = auxL->inicio;
 
     return 0;
