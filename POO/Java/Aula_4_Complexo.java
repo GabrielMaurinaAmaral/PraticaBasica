@@ -1,5 +1,3 @@
-import math;
-
 public class Aula_4_Complexo {
     private int real, imaginario;
 
@@ -24,7 +22,12 @@ public class Aula_4_Complexo {
     }
 
     public void imprimirNumero() {
-        System.out.println(real + " + " + imaginario + "i");
+        if (imaginario > 0)
+            System.out.println(real + " + " + imaginario + "i");
+        else if (imaginario == 0)
+            System.out.println(real);
+        else
+            System.out.println(real + " " + imaginario + "i");
     }
 
     public boolean elgual(Aula_4_Complexo c) {
@@ -45,18 +48,19 @@ public class Aula_4_Complexo {
     }
 
     public void multiplica(Aula_4_Complexo c) {
-        this.real = (this.real*c.real)-(this.imaginario*c.imaginario);
-        this.imaginario = (this.real*c.imaginario)+(this.imaginario*c.real);
+        int aux_r = (this.real * c.real) - (this.imaginario * c.imaginario);
+        int aux_i = (this.real * c.imaginario) + (this.imaginario * c.real);
+
+        this.real = aux_r;
+        this.imaginario = aux_i;
     }
 
     public void divide(Aula_4_Complexo c) {
-        this.real = ((this.real*c.real)-(this.imaginario*c.imaginario)) / (pow(c.imaginario,2));
-        
-        
-        
-        
-        
-        
-        this.imaginario = ((this.real*c.imaginario)+(this.imaginario*c.real));
+        int aux_r = ((this.real * c.real) + (this.imaginario * c.imaginario)) / ((c.real * c.real)
+                + (c.imaginario * c.imaginario));
+        int aux_i = ((this.imaginario * c.real) - (this.real * c.imaginario)) / ((c.real * c.real)
+                + (c.imaginario * c.imaginario));
+        this.real = aux_r;
+        this.imaginario = aux_i;
     }
 }
