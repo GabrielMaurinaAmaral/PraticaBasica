@@ -23,15 +23,15 @@ public class Aula_4_Complexo {
 
     public void imprimirNumero() {
         if (imaginario > 0)
-            System.out.println(real + " + " + imaginario + "i");
+            System.out.println("Numero Complexo: " + real + " + " + imaginario + "i");
         else if (imaginario == 0)
             System.out.println(real);
         else
             System.out.println(real + " " + imaginario + "i");
     }
-
+ 
     public boolean elgual(Aula_4_Complexo c) {
-        if (c.real == this.real || c.imaginario == this.imaginario)
+        if (c.real == this.real && c.imaginario == this.imaginario)
             return true;
         else
             return false;
@@ -56,10 +56,8 @@ public class Aula_4_Complexo {
     }
 
     public void divide(Aula_4_Complexo c) {
-        int aux_r = ((this.real * c.real) + (this.imaginario * c.imaginario)) / ((c.real * c.real)
-                + (c.imaginario * c.imaginario));
-        int aux_i = ((this.imaginario * c.real) - (this.real * c.imaginario)) / ((c.real * c.real)
-                + (c.imaginario * c.imaginario));
+        int aux_r = ((this.real * c.real) + (this.imaginario * c.imaginario)) / ((c.real * c.real) + (c.imaginario * c.imaginario));
+        int aux_i = ((this.imaginario * c.real) - (this.real * c.imaginario)) / ((c.real * c.real) + (c.imaginario * c.imaginario));
         this.real = aux_r;
         this.imaginario = aux_i;
     }
