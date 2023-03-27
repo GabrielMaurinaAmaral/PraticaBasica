@@ -2,6 +2,7 @@ public class Aula_4_Conta {
     private String nomeCorrentista;
     private double saldo;
     // construtor
+    
     public Aula_4_Conta(String n, double s) {
         nomeCorrentista = n;
         saldo = s;

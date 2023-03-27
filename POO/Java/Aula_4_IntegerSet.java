@@ -21,12 +21,11 @@ public class Aula_4_IntegerSet {
     public Aula_4_IntegerSet intersection(Aula_4_IntegerSet a) {
         Aula_4_IntegerSet array_2 = new Aula_4_IntegerSet();
         for (int i = 0; i < 101; i++) {
-            if (this.array[i] && a.array[i]) {
+            if (this.array[i] && a.array[i] == true) {
                 array_2.array[i] = true;
             }
         }
         return array_2;
-
     }
 
     public void insertElement(int i) {
@@ -46,10 +45,10 @@ public class Aula_4_IntegerSet {
     }
 
     public Boolean isEqualTo(Aula_4_IntegerSet a) {
-        for (int j = 0; j < 101; j++) {
-            if (this.array[j] != a.array[j])
+        for (int i = 0; i < 101; i++) {
+            if (this.array[i] != a.array[i])
                 return false;
-            return true;
         }
+        return true;
     }
 }
