@@ -37,10 +37,6 @@ public class Aula_5 {
         data[2] = new int[4];
         int[][] moreData = { { 1 }, { 2, 3 }, { 4, 5, 6 } };
 
-        int[] data_ = new data[5];
-        for (int i = 0; i < data_.length; i++)
-            data_[i] = 3 * i;
-
         int[] data2 = { 3, 4, 5, 6 };
         // os dois lacos fazem a mesma coisa
         for (int i = 0; i < data2.length; i++)
