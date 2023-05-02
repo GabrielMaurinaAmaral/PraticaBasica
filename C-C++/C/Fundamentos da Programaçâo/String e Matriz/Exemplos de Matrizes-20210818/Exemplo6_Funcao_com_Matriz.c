@@ -1,9 +1,9 @@
-#include <stdio.h>
+0#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-void gerarMatrizInteiroDe0aLimite(int linha, int coluna, int matriz[linha][coluna], int limite); //Protótipo da função
-void mostrarMatrizInteiro(int linha, int coluna, int matriz[linha][coluna]); //Protótipo da função
+void gerarMatrizInteiroDe0aLimite(int linha, int coluna, int matriz[linha][coluna], int limite); //Protï¿½tipo da funï¿½ï¿½o
+void mostrarMatrizInteiro(int linha, int coluna, int matriz[linha][coluna]); //Protï¿½tipo da funï¿½ï¿½o
 
 int main(void)
 {
