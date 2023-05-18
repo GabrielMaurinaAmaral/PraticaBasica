@@ -69,3 +69,6 @@ class Fracao:
 
     def imprimirNumerico(self, casas):
         print(f"Numero em Float: {(self.numerador/self.denominador):,.2f}")
+
+arr =list()
+

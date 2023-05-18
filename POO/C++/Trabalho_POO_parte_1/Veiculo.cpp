@@ -3,7 +3,7 @@
 Veiculo::Veiculo()
 {
     existe = false;
-    //cout << "Veiculo foi construido na garagem" << endl;
+    // cout << "Veiculo foi construido na garagem" << endl;
 }
 
 Veiculo::Veiculo(int ID) : id{ID}
@@ -40,11 +40,11 @@ void Veiculo::mover()
     else
     {
         if (combustivel < 0.55)
-            cout << "Veiculo ID "<< id << " nao possui combustivel suficiente" << endl;
+            cout << "Veiculo ID " << id << " nao possui combustivel suficiente" << endl;
         if (ipva == false)
-            cout << "Veiculo ID "<< id << " nao possui o ipva pago" << endl;
+            cout << "Veiculo ID " << id << " nao possui o ipva pago" << endl;
         if (verificar_todos_pneus() == false)
-            cout << "Veiculo ID "<< id << " nao possui todos os pneus calibrados" << endl;
+            cout << "Veiculo ID " << id << " nao possui todos os pneus calibrados" << endl;
     }
 }
 

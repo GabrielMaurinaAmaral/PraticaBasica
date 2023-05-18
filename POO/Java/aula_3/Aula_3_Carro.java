@@ -2,7 +2,7 @@ package aula_3;
 
 public class Aula_3_Carro {
     // atributos
-    private double velocidade;
+    double velocidade;
     private String marca;
 
     // metodos

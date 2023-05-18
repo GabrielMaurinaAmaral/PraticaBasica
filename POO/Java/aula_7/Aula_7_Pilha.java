@@ -4,7 +4,7 @@ public class Aula_7_Pilha {
 
     public Aula_7_Pilha(int tam) {
         this.capacidade_max = tam;
-        this.topo = tam-1;
+        this.topo = 0;
         revistas = new Aula_7_Revista[tam];
     }
 
@@ -13,7 +13,7 @@ public class Aula_7_Pilha {
             System.out.println("Pilha cheia");
         } else {
             revistas[topo] = new Aula_7_Revista(titulo, quant_page, num_edicao, mes, ano);
-            topo--;
+            topo++;
             System.out.println("revista foi inserida");
         }
     }
@@ -23,7 +23,7 @@ public class Aula_7_Pilha {
             System.out.println("pilha esta vazia");
         } else {
             revistas[topo] = null;
-            topo++;
+            topo--;
             System.out.println("revista foi removida");
         }
     }
