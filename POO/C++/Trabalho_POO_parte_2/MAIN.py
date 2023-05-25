@@ -1,76 +1,98 @@
-import Simulador
+from Simulador import *
+import time
 
-def main():
-    menu = Simulador()
-    opcao = 0
-    id = 0
-    id_pneu = 0
-    gasolina = 0.0
+menu = Simulador(20)
+opcao = 0
+dado_int_1 = 0
+dado_int_2 = 0
+dado_float = 0.0
+dado_string = ""
 
-    while opcao != 13:
-        print("\nMENU - Escolha uma das opcoes abaixo")
-        print("1  - Incluir veiculo na pista")
-        print("2  - Remover veiculo na pista")
-        print("3  - Abastecer veiculo")
-        print("4  - Movimentar veiculo")
-        print("5  - Movimentar todos os veiculos")
-        print("6  - Imprimir todos os dados de um veiculo")
-        print("7  - Imprimir todos os dados de todos os veiculos")
-        print("8  - Esvaziar/calibrar um pneu especifico")
-        print("9  - Esvaziar/calibrar todos os pneus de um veiculo especifico")
-        print("10 - Imprimir pista de corrida")
-        print("11 - Gravar veiculos em arquivo")
-        print("12 - Ler veiculos do arquivo")
-        print("13 - Sair da aplicacao\n")
+while opcao != 13:
+    print("\nMENU - Escolha uma das opcoes abaixo")
+    print("1  - Incluir veiculo na pista")
+    print("2  - Remover veiculo na pista")
+    print("3  - Abastecer veiculo")
+    print("4  - Movimentar veiculo")
+    print("5  - Movimentar veiculos por tipo")
+    print("6  - Movimentar todos os veiculos")
+    print("7  - Imprimir todos os dados de todos os veiculos")
+    print("8  - Imprimir todos os dados de veiculos por tipo")
+    print("9  - Calibrar um pneu especifico")
+    print("10 - Calibrar todos os pneus de um veiculo especifico")
+    print("11 - Esvaziar todos os pneus de um veiculo especifico")
+    print("12 - Imprimir pista de corrida")
+    print("13 - Gravar veiculos em arquivo")
+    print("14 - Ler veiculos do arquivo")
+    print("15 - Sair da aplicacao\n")
+    opcao = int(input("Digite sua opcao: "))
 
-        opcao = int(input("Digite sua opcao: "))
-
+    try:
         if opcao == 1:
-            menu.incluir_veiculo()
+            print("\tB - Bicicleta")
+            print("\tM - Motocicleta")
+            print("\tC - Carro Passeio")
+            print("\tE - Carro esportivo")
+            dado_string = str(input("\tQue tipo de veiculo você quer incluir?"))
+            if dado_string in ["E", "B", "M", "C"]:
+                try:
+                    menu.incluir_veiculo(dado_string)
+                except ValueError:
+                    print("Opção não existente")
+            else:
+                print("Opção inválida")
 
         elif opcao == 2:
-            id = int(input("Em qual veiculo você quer remover? Informe o ID: "))
-            menu.remover_veiculo(id)
+            dado_int_1 = int(input("Em qual veiculo você quer remover? Informe o ID: "))
+            menu.remover_veiculo(dado_int_1)
 
         elif opcao == 3:
-            id = int(input("Em qual veiculo você quer abastecer? Informe o ID: "))
-            gasolina = float(input("Quantos litros de gasolina você quer colocar no tanque: "))
-            menu.abastecer_veiculo(id, gasolina)
+            dado_int_1 = int(input("Em qual veiculo você quer abastecer? Informe o ID: "))
+            dado_float = float(input("Quantos litros de dado_float você quer colocar no tanque: "))
+            menu.abastecer_veiculo(dado_int_1, dado_float)
 
         elif opcao == 4:
-            id = int(input("Em qual veiculo você quer mover? Informe o ID: "))
-            menu.mover_veiculo(id)
+            dado_int_1 = int(input("Em qual veiculo você quer mover? Informe o ID: "))
+            menu.mover_veiculo(dado_int_1)
 
         elif opcao == 5:
-            menu.mover_todos_veiculos()
+            dado_int_1 = int(input("Que tipo de veiculo vc quer mover? "))
+            print("\tB - Bicicleta")
+            print("\tM - Motocicleta")
+            print("\tC - Carro Passeio")
+            print("\tE - Carro esportivo")
+            dado_string = str(input("\tQue tipo de veiculo vc quer incluir?"))
+            menu.mover_veiculos_tipo(dado_string)
 
         elif opcao == 6:
-            id = int(input("Mostrar dados de qual veiculo? Informe o ID: "))
-            menu.mostrar_dados_veiculo(id)
+            menu.mover_todos_veiculos()
 
         elif opcao == 7:
             menu.mostrar_dados_todos_veiculos()
 
         elif opcao == 8:
-            id = int(input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
-            id_pneu = int(input("Qual pneu você quer esvaziar/calibrar (1, 2, 3 ou 4): "))
-            menu.veiculo_mexer_pneu(id, id_pneu - 1)
+            dado_string = int(input("Mostrar dados de qual veiculo? Informe o ID: "))
+            menu.mostrar_dados_veiculos_tipo(dado_string)
 
         elif opcao == 9:
-            id = int(input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
-            menu.veiculo_mexer_todos_pneus(id)
-
-        elif opcao == 10:
-            menu.imprimir_pista()
-
-        elif opcao == 11:
-            menu.gravar_arquivo()
-
+            dado_int_1 = int(input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
+            dado_int_2 = int(input("Qual pneu você quer esvaziar/calibrar: "))
+            menu.veiculo_mexer_pneu(dado_int_1)
+        
+        elif opcao == 9:
+            dado_int_1 = int(input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
+            menu.veiculo_mexer_todos_pneus(dado_int_1)
+        
         elif opcao == 12:
+            menu.imprimir_pista()
+        
+        elif opcao == 13:
+            menu.gravar_arquivo()
+        
+        elif opcao == 14:
             menu.ler_arquivo()
+        time.sleep(2)
 
-    print("Encerrando a aplicacao.")
-
-
-if __name__ == "__main__":
-    main()
+    except ValueError:
+        print("Opcao não existente tente novamente")
+print("Encerrando a aplicacao.")

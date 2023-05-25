@@ -9,7 +9,7 @@ Veiculo::Veiculo()
 Veiculo::Veiculo(int ID) : id{ID}
 {
     existe = true;
-    static int quantidade_rodas = 4;
+    quantidade_rodas = 4;
     distancia_percorrida = 0;
     desenho = "    ____\n __/ |_ \\._\n|  _     _``-.\n-(_)---(_)--\n";
     combustivel = 1;
@@ -72,8 +72,8 @@ bool Veiculo::verificar_todos_pneus()
     bool result;
     for (int i = 0; i < quantidade_rodas; i++)
         result = rodas[i].get_calibragem();
-    if (result == false)
-        return result;
+        if (result == false)
+            return result;
     return result;
 }
 

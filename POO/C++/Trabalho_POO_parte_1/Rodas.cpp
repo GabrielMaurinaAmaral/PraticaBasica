@@ -4,7 +4,6 @@
 #include <iostream>
 using namespace std;
 
-
 Rodas::Rodas()
 {
     this->calibragem_pneu = rand() % 2;
