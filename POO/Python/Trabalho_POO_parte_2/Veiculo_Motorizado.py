@@ -31,3 +31,10 @@ class Veiculo_Motorizado(Veiculo):
         self.__combustivel += abastecer
         print(
             f"Tanque de combustivel esta agora com {self.__combustivel} de combustivel")
+    
+    def consumir(self, consome:float ) ->None:
+        self.__combustivel -= consome
+        print(
+            f"Tanque de combustivel esta agora com {self.__combustivel} de combustivel")
+    
+        

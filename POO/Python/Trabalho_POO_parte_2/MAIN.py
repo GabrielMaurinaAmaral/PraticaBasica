@@ -8,7 +8,7 @@ dado_int_2 = 0
 dado_float = 0.0
 dado_string = ""
 
-while opcao != 13:
+while opcao != 15:
     print("\nMENU - Escolha uma das opcoes abaixo")
     print("1  - Incluir veiculo na pista")
     print("2  - Remover veiculo na pista")
@@ -25,15 +25,17 @@ while opcao != 13:
     print("13 - Gravar veiculos em arquivo")
     print("14 - Ler veiculos do arquivo")
     print("15 - Sair da aplicacao\n")
-    opcao = int(input("Digite sua opcao: "))
 
     try:
+        opcao = int(input("Digite sua opcao: "))
+
         if opcao == 1:
             print("\tB - Bicicleta")
             print("\tM - Motocicleta")
             print("\tC - Carro Passeio")
             print("\tE - Carro esportivo")
-            dado_string = str(input("\tQue tipo de veiculo você quer incluir?"))
+            dado_string = str(
+                input("\tQue tipo de veiculo você quer incluir?"))
             if dado_string in ["E", "B", "M", "C"]:
                 try:
                     menu.incluir_veiculo(dado_string)
@@ -43,16 +45,18 @@ while opcao != 13:
                 print("Opção inválida")
 
         elif opcao == 2:
-            dado_int_1 = int(input("Em qual veiculo você quer remover? Informe o ID: "))
+            dado_int_1 = int(
+                input("Em qual veiculo você quer remover? Informe o ID: "))
             menu.remover_veiculo(dado_int_1)
 
         elif opcao == 3:
-            dado_int_1 = int(input("Em qual veiculo você quer abastecer? Informe o ID: "))
-            dado_float = float(input("Quantos litros de dado_float você quer colocar no tanque: "))
-            menu.abastecer_veiculo(dado_int_1, dado_float)
+            dado_int_1 = int(
+                input("Em qual veiculo você quer abastecer? Informe o ID: "))
+            menu.abastecer_veiculo(dado_int_1)
 
         elif opcao == 4:
-            dado_int_1 = int(input("Em qual veiculo você quer mover? Informe o ID: "))
+            dado_int_1 = int(
+                input("Em qual veiculo você quer mover? Informe o ID: "))
             menu.mover_veiculo(dado_int_1)
 
         elif opcao == 5:
@@ -71,28 +75,32 @@ while opcao != 13:
             menu.mostrar_dados_todos_veiculos()
 
         elif opcao == 8:
-            dado_string = int(input("Mostrar dados de qual veiculo? Informe o ID: "))
+            dado_string = int(
+                input("Mostrar dados de qual veiculo? Informe o ID: "))
             menu.mostrar_dados_veiculos_tipo(dado_string)
 
         elif opcao == 9:
-            dado_int_1 = int(input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
+            dado_int_1 = int(
+                input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
             dado_int_2 = int(input("Qual pneu você quer esvaziar/calibrar: "))
             menu.veiculo_mexer_pneu(dado_int_1)
-        
+
         elif opcao == 9:
-            dado_int_1 = int(input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
+            dado_int_1 = int(
+                input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
             menu.veiculo_mexer_todos_pneus(dado_int_1)
-        
+
         elif opcao == 12:
             menu.imprimir_pista()
-        
+
         elif opcao == 13:
             menu.gravar_arquivo()
-        
+
         elif opcao == 14:
             menu.ler_arquivo()
-        time.sleep(2)
 
     except ValueError:
         print("Opcao não existente tente novamente")
+    time.sleep(1)
+
 print("Encerrando a aplicacao.")

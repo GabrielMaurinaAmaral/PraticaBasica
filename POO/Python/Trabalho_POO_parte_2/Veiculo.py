@@ -23,10 +23,13 @@ class Veiculo(ABC):
 
     def get_quantidade_rodas(self) -> int:
         return self.__quantidade_rodas
-    
+
     def get_rodas(self) -> list:
         return self.__rodas
-    
+
+    def set_distancia_percorrida(self, new: int) -> int:
+        self.__distancia_percorrida = new
+
     # funções abstratas
     @abstractmethod
     def mover(self) -> None:
@@ -54,10 +57,9 @@ class Veiculo(ABC):
 
     def __str__(self) -> str:
         dados = []
-        dados.append(f"ID: {self.__id}")
+        dados.append(f"\nID: {self.__id}")
         dados.append(f"Distancia percorrida: {self.__distancia_percorrida}")
         dados.append(f"Quantidade de rodas: {self.__quantidade_rodas}")
         for roda in self.__rodas:
             dados.append(str(roda))
         return "\n".join(dados)
-

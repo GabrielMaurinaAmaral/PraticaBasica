@@ -12,4 +12,4 @@ class Roda:
         return self.__calibragem_pneu
 
     def __str__(self) -> str:
-        return f"\nCalibragem do Pneu: {self.__calibragem_pneu}"
+        return f"Calibragem do Pneu: {self.__calibragem_pneu}"

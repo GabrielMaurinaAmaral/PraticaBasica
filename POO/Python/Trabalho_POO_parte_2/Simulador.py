@@ -19,7 +19,7 @@ class Simulador:
         self.__quantidade_veiculos = 0
         self.__garagem = []
         print("\n SIMULAÇÃO COMEÇOU \n")
-
+  
     def incluir_veiculo(self, tipo: str) -> None:
             if self.__capacidade_veiculos == self.__quantidade_veiculos:
                 print("Capacidade de veiculo está cheia")
@@ -51,15 +51,17 @@ class Simulador:
         print(
             f"Não existe nenhum veiculo com ID {id} na pista para que seja excluido")
 
-    def abastecer_veiculo(self, id, quantidade_gasosa) -> None:
+    def abastecer_veiculo(self, id) -> None:
         for veiculo in self.__garagem:
             if veiculo.get_id() == id:
-                if isinstance(self.veiculo, Veiculo_Motorizado):
+                if isinstance(veiculo, Veiculo_Motorizado):
+                    quantidade_gasosa= float(input("Quantos litros de dado_float você quer colocar no tanque: "))
                     veiculo.abastecer(quantidade_gasosa)
                     return
                 else:
                     print("Bicicleta não pode ser abastecida")
-        print(f"Não existe nenhum veiculo com ID {id} na pista para que possa abastecer")
+                    return
+            print(f"Não existe nenhum veiculo com ID {id} na pista para que possa abastecer")
 
     def mover_veiculo(self, id) -> None:
         for veiculo in self.__garagem:
