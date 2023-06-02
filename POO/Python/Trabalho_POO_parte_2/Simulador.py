@@ -103,47 +103,47 @@ class Simulador:
                 for roda in veiculo.get_rodas(): 
                     print(f"pneu {id_pneu} esta {roda}")   
                     id_pneu +=1
-                id_pneu = input("qual pneu vc quer mexer")
-                
-                if 0 < id_pneu and id_pneu < veiculo._quantidade_rodas:
-                    opcao = 0
-                    while opcao != 1 and opcao != 2:
-                        try:
-                            opcao = int(input("esvaziar(1) ou encher(2): "))
-                        except ValueError:
-                            print(
-                                "Opção inválida. Digite 1 para esvaziar ou 2 para encher.")
-                    if opcao == 1:
-                        self.veiculo.esvaziar(id_pneu)
+                while True:                
+                    id_pneu = int(input("qual pneu vc quer mexer"))
+                    if -1 < id_pneu and id_pneu < veiculo.get_quantidade_rodas():
+                        while True:
+                            try:
+                                opcao = int(input("esvaziar(1) ou encher(2): "))
+                            except ValueError:
+                                print("Opção tipo de dados invalido'")
+                            if opcao == 1:
+                                veiculo.esvaziar_pneu(id_pneu)
+                                break
+                            elif opcao == 2:
+                                veiculo.calibrar_pneu(id_pneu)
+                                break
+                            else:
+                                print("Digite 1 para esvaziar ou 2 para encher")
+                        break
                     else:
-                        self.veiculo.calibrar(id_pneu)
-                    return
-                else:
-                    print(f"Não existe esse pneu no veiculo com ID {id}")
-                    return
-        print(
-            f"Não existe nenhum veiculo com ID {id} na pista para que possa mexer no pneu dele")
+                        print(f"Não existe esse pneu no veiculo com ID {id}")
+        print(f"Não existe nenhum veiculo com ID {id} na pista para que possa mexer no pneu dele")
 
     def veiculo_mexer_todos_pneus(self, id) -> None:
         for veiculo in self.__garagem:
-            if veiculo.get_id() == id:
-                opcao = 0
-                while opcao != 1 and opcao != 2:
+            if veiculo.get_id() == id:        
+                while True:
                     try:
-                        opcao = int(input("esvaziar(1) ou encher(2): "))
+                        opcao = int(input("Esvaziar (1) ou encher (2): "))
+                        if opcao == 1:
+                            for i in range(veiculo.get_quantidade_rodas()):
+                                veiculo.esvaziar_pneu(i)
+                            break
+                        elif opcao == 2:
+                            for i in range(veiculo.get_quantidade_rodas()):
+                                veiculo.calibrar_pneu(i)
+                            break
+                        else:
+                            print("Digite 1 para esvaziar ou 2 para encher.")
                     except ValueError:
-                        print(
-                            "Opção inválida. Digite 1 para esvaziar ou 2 para encher.")
-                if opcao == 1:
-                    for i in range(veiculo._quantidade_rodas()):
-                        veiculo.esvaziar(i)
-                else:
-                    for i in range(veiculo._quantidade_rodas()):
-                        veiculo.calibrar(i)
-                return
-        print(
-            f"Não existe nenhum veiculo com ID {id} na pista para que possa mexer nos pneus dele")
-
+                        print("Opção inválida. Digite um número válido.")
+        print(f"Não existe nenhum veículo com ID {id} na pista para que possa mexer nos pneus dele")
+        
     def imprimir_pista(self) -> None:
         for veiculo in self.__garagem:
             veiculo.desenhar()

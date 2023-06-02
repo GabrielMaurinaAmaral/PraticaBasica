@@ -6,8 +6,6 @@ from random import choice
 from abc import ABC, abstractclassmethod
 
 #classe abstrata
-
-
 class Veiculo_Motorizado(Veiculo):
     # construtor abstrato
     @abstractclassmethod
@@ -17,7 +15,8 @@ class Veiculo_Motorizado(Veiculo):
         self.__gasto_carro_passeio: float = 0.75
         self.__gasto_carro_esportivo: float = 2.3
         self.__combustivel: float = 0
-        self.__ipva = bool(choice([True, False]))
+        # self.__ipva = bool(choice([True, False]))
+        self.__ipva = True
 
     # metodo get
     def get_combustivel(self) -> float:
@@ -37,4 +36,14 @@ class Veiculo_Motorizado(Veiculo):
         print(
             f"Tanque de combustivel esta agora com {self.__combustivel} de combustivel")
     
+    def __str__(self) -> str:
+        dados = []
+        dados.append(f"\nID: {self.get_id()}")
+        dados.append(f"Distancia percorrida: {self.get_distancia_percorrida()}")
+        dados.append(f"Quantidade de rodas: {self.get_quantidade_rodas()}")
+        for roda in self.get_rodas():
+            dados.append(str(roda))
+        dados.append(f"Combustivel no tanque: {self.__combustivel}")
+        dados.append(f"IPVA: {self.__ipva}")
+        return "\n".join(dados)
         

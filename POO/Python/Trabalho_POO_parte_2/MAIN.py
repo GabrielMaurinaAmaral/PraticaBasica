@@ -3,7 +3,7 @@ import time
 
 menu = Simulador(20)
 opcao = 0
-dado_int_1 = 0
+dado_int_1 = 0 
 dado_int_2 = 0
 dado_float = 0.0
 dado_string = ""
@@ -75,17 +75,16 @@ while opcao != 15:
             menu.mostrar_dados_todos_veiculos()
 
         elif opcao == 8:
-            dado_string = int(
-                input("Mostrar dados de qual veiculo? Informe o ID: "))
+            dado_string = str(
+                input("Mostrar dados dos veiculos de qual tipo: "))
             menu.mostrar_dados_veiculos_tipo(dado_string)
 
         elif opcao == 9:
             dado_int_1 = int(
                 input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
-            dado_int_2 = int(input("Qual pneu você quer esvaziar/calibrar: "))
             menu.veiculo_mexer_pneu(dado_int_1)
 
-        elif opcao == 9:
+        elif opcao == 10:
             dado_int_1 = int(
                 input("Qual veiculo você quer mexer nos pneus? Informe o ID: "))
             menu.veiculo_mexer_todos_pneus(dado_int_1)

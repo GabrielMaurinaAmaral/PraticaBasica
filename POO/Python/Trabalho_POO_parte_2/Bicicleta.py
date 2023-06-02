@@ -18,7 +18,7 @@ class Bicicleta(Veiculo):
             self.set_distancia_percorrida(new_distancia)
             print(f"Bicicleta - ID:{self.get_id()} andou +2 blocos")
         else: 
-            print(f"Carro Esportivo com ID {self.get_id()} não possui todos os pneus calibrados")
+            print(f"Bicicleta com ID {self.get_id()} não possui todos os pneus calibrados")
 
     def desenhar(self):
         print(" "*self.get_distancia_percorrida() + "   __o")

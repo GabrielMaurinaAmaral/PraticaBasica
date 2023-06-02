@@ -30,7 +30,10 @@ class Carro_Esportivo(Veiculo_Motorizado):
             print(f"Carro Esportivo com ID {self.get_id()} não está com ipva em dia")
 
     def desenhar(self):
-        print(" "*self.get_distancia_percorrida() + "    ___")
-        print(" "*self.get_distancia_percorrida() + " __/ _ \_")
-        print(" "*self.get_distancia_percorrida() + "|  _   -.")
-        print(" "*self.get_distancia_percorrida() + "'-(_(_)-'")
+        print(" "*self.get_distancia_percorrida() + "        __")
+        print(" "*self.get_distancia_percorrida() + "      ~( @\ \ ")
+        print(" "*self.get_distancia_percorrida() + "   _____]_[_/_>__")
+        print(" "*self.get_distancia_percorrida() + "  / __ \\<> |  __ \\")
+        print(" "*self.get_distancia_percorrida() + "=\\_/__\\_\\__|_/__\\")
+        print(" "*self.get_distancia_percorrida() + "   (__)      (__)")
+
