@@ -1,9 +1,9 @@
 from Veiculo import *
 
-
 class Bicicleta(Veiculo):
     def __init__(self, id: int, rodas: int):
         super().__init__(id, rodas)
+        # tipo para facilitar na hora de identificar o tipo de veiculo, dava pra fazer se essa variavel mais ia ficar muita gambiarra e seria dificil explicar
         self.__tipo = "B"
         print(f"Bicicleta com ID {self.get_id()} foi construida")
 

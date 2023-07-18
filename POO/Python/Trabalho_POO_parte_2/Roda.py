@@ -1,6 +1,5 @@
 from random import choice
 
-
 class Roda:
     def __init__(self):
         self.__calibragem_pneu: bool = bool(choice([True, False]))

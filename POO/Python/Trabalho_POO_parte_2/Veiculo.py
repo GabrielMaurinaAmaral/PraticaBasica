@@ -3,7 +3,7 @@ from Roda import *
 
 # biblioteca
 from abc import ABC, abstractclassmethod, abstractmethod
-
+#"ABC" significa "Abstract Base Class"
 # classe abstrata
 class Veiculo(ABC):
     # construtor abstrato
@@ -27,6 +27,7 @@ class Veiculo(ABC):
     def get_rodas(self) -> list:
         return self.__rodas
 
+    # metodos set
     def set_distancia_percorrida(self, new: int) -> int:
         self.__distancia_percorrida = new
 
@@ -55,6 +56,7 @@ class Veiculo(ABC):
         self.__rodas[id_pneu].set_calibragem(False)
         print(f"Pneu: {id_pneu} -> esvaziado")
 
+    # to_string = __str__
     def __str__(self) -> str:
         dados = []
         dados.append(f"\nID: {self.__id}")

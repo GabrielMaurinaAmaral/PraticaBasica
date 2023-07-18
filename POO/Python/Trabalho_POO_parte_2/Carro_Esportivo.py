@@ -1,11 +1,14 @@
-from Veiculo_Motorizado import Veiculo_Motorizado
+from Veiculo_Motorizado import *
 from Veiculo import *
+from Interface_IPVA import *
 
 
-class Carro_Esportivo(Veiculo_Motorizado):
+class Carro_Esportivo(Veiculo_Motorizado, Interface_IPVA):
+    __gasto_carro_esportivo: float = 2.3
     # constructor
     def __init__(self, id: int, rodas: int):
         super().__init__(id, rodas)
+        super().set_valor_ipva(self.calcular_ipva())
         self.__tipo = "E"
         print(f"Carro Esportivo com ID {self.get_id()} foi construida")
 
@@ -37,3 +40,5 @@ class Carro_Esportivo(Veiculo_Motorizado):
         print(" "*self.get_distancia_percorrida() + "=\\_/__\\_\\__|_/__\\")
         print(" "*self.get_distancia_percorrida() + "   (__)      (__)")
 
+    def calcular_ipva(self):
+        return self.VALOR_BASE * self.CARRO_ESPORTIVO

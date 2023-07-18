@@ -1,10 +1,10 @@
 # classes
 from Veiculo import *
 from Veiculo_Motorizado import *
-from Bicicleta import Bicicleta
-from Motocicleta import Motocicleta
-from Carro_Passeio import Carro_Passeio
-from Carro_Esportivo import Carro_Esportivo
+from Bicicleta import *
+from Motocicleta import *
+from Carro_Passeio import *
+from Carro_Esportivo import *
 
 # biblioteca
 from random import randint
@@ -13,11 +13,11 @@ import os
 
 
 class Simulador:
-
+    # Construtor
     def __init__(self, capacidade: int) -> None:
-        self.__capacidade_veiculos = capacidade
-        self.__quantidade_veiculos = 0
-        self.__garagem = []
+        self.__capacidade_veiculos: int  = capacidade
+        self.__quantidade_veiculos: int  = 0
+        self.__garagem: list = []
         print("\n SIMULAÇÃO COMEÇOU \n")
   
     def incluir_veiculo(self, tipo: str) -> None:
@@ -35,9 +35,10 @@ class Simulador:
                 elif tipo == 'C':
                     veiculo = Carro_Passeio(id, 4)
                 elif tipo == 'E':
-                    veiculo = Carro_Esportivo(id, 4)  
+                    veiculo = Carro_Esportivo(id, 4)     
                 self.__garagem.append(veiculo)
-                self.__quantidade_veiculos += 1
+                self.__quantidade_veiculos = len(self.__garagem)
+                print(veiculo)
                 print(f"Quantidade de veiculos na pista agora é {self.__quantidade_veiculos}")
 
     def remover_veiculo(self, id: int) -> None:
@@ -48,8 +49,7 @@ class Simulador:
                 print(f"Veiculo com id {id} foi excluido da pista")
                 print(f"Quantdade de __garagem na pista agora é {self.__quantidade_veiculos}")
                 return
-        print(
-            f"Não existe nenhum veiculo com ID {id} na pista para que seja excluido")
+        print(f"Não existe nenhum veiculo com ID {id} na pista para que seja excluido")
 
     def abastecer_veiculo(self, id) -> None:
         for veiculo in self.__garagem:
@@ -61,15 +61,14 @@ class Simulador:
                 else:
                     print("Bicicleta não pode ser abastecida")
                     return
-            print(f"Não existe nenhum veiculo com ID {id} na pista para que possa abastecer")
+        print(f"Não existe nenhum veiculo com ID {id} na pista para que possa abastecer")
 
     def mover_veiculo(self, id) -> None:
         for veiculo in self.__garagem:
             if veiculo.get_id() == id:
                 veiculo.mover()
                 return
-        print(
-            f"Não existe nenhum veiculo com ID {id} na pista para que possa movelo")
+        print(f"Não existe nenhum veiculo com ID {id} na pista para que possa movelo")
 
     def mover_veiculos_tipo(self, tipo) -> None:
         if tipo in ["E", "B", "M", "C"]:
@@ -78,13 +77,13 @@ class Simulador:
                     veiculo.mover()
                     return
         else:
-            print(f"Não existe nenhum veiculo com ID {id} na pista para que possa movelo")
+            print(f"Não existe nenhum veiculo com tipo {tipo} na pista para que possa movelo")
 
     def mover_todos_veiculos(self) -> None:
         for veiculo in self.__garagem:
             veiculo.mover()
 
-    def mostrar_dados_veiculos_tipo(self, tipo) ->None:
+    def mostrar_dados_veiculos_tipo(self, tipo) -> None:
         if tipo in ["E", "B", "M", "C"]:
             for veiculo in self.__garagem:
                 if veiculo.get_tipo() == tipo:
@@ -124,49 +123,39 @@ class Simulador:
                         print(f"Não existe esse pneu no veiculo com ID {id}")
         print(f"Não existe nenhum veiculo com ID {id} na pista para que possa mexer no pneu dele")
 
-    def veiculo_mexer_todos_pneus(self, id) -> None:
-        for veiculo in self.__garagem:
-            if veiculo.get_id() == id:        
-                while True:
-                    try:
-                        opcao = int(input("Esvaziar (1) ou encher (2): "))
-                        if opcao == 1:
-                            for i in range(veiculo.get_quantidade_rodas()):
-                                veiculo.esvaziar_pneu(i)
-                            break
-                        elif opcao == 2:
-                            for i in range(veiculo.get_quantidade_rodas()):
-                                veiculo.calibrar_pneu(i)
-                            break
-                        else:
-                            print("Digite 1 para esvaziar ou 2 para encher.")
-                    except ValueError:
-                        print("Opção inválida. Digite um número válido.")
-        print(f"Não existe nenhum veículo com ID {id} na pista para que possa mexer nos pneus dele")
+    def calibrar_veiculos_tipo(self, tipo) -> None:
+        if tipo in ["E", "B", "M", "C"]:
+            for veiculo in self.__garagem:
+                if veiculo.get_tipo() == tipo:        
+                    for i in range(veiculo.get_quantidade_rodas()):
+                        veiculo.calibrar_pneu(i)
+                    break
+        else:
+            print(f"Não existe nenhum veículo com ID {id} na pista para que possa mexer nos pneus dele")
         
     def imprimir_pista(self) -> None:
         for veiculo in self.__garagem:
-            veiculo.desenhar()
-
+                veiculo.desenhar()
+        
     def gravar_arquivo(self) -> None:
         if len(self.__garagem) != 0:
-            if os.path.isfile('veiculos.txt'):
-                mode: str = 'ab'
-            else:
-                mode: str = 'wb'
-            with open('veiculos.txt', mode=mode) as file:
+            with open('veiculos.txt', mode='wb') as file:
                 pickle.dump(len(self.__garagem), file)
                 for veiculo in self.__garagem:
                     pickle.dump(veiculo, file)
-            print("veiculos gravados com sucesso")
+            print("Veículos gravados com sucesso")
         else:
-            print('Não há veículos para serem gravados')
+            print("Não há veículos para serem gravados")
 
     def ler_arquivo(self) -> None:
         if os.path.isfile('veiculos.txt'):
-            with open('veiculos.txt', "rb") as file:
+            for i in range(len(self.__garagem)):
+                del self.__garagem[i]
+            
+            with open('veiculos.txt', 'rb') as file:
                 for _ in range(pickle.load(file)):
                     self.__garagem.append(pickle.load(file))
-            print('veiculos lidos com sucesso')
+            print("Veículos lidos com sucesso!")
         else:
             print("Nenhum arquivo encontrado")
+    

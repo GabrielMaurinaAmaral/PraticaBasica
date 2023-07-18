@@ -1,10 +1,14 @@
-from Veiculo_Motorizado import Veiculo_Motorizado
+from Veiculo_Motorizado import *
 from Veiculo import *
+from Interface_IPVA import *
 
-
-class Motocicleta(Veiculo_Motorizado):
+class Motocicleta(Veiculo_Motorizado, Interface_IPVA):
+    # metodo final(isso é feito implicitaente, linguagem ja interpleta que é uma variavel que não pode ser alterada)
+    __gasto_motocicleta: float = 0.25
+    #contrut
     def __init__(self, id: int, rodas: int):
         super().__init__(id, rodas)
+        super().set_valor_ipva(self.calcular_ipva())
         self.__tipo = "M"
         print(f"Motocicleta com ID {self.get_id()} foi construida")
 
@@ -12,7 +16,7 @@ class Motocicleta(Veiculo_Motorizado):
     def get_tipo(self) -> int:
         return self.__tipo
 
-    # funções abstrata herdada pelo pai veiculo
+    # funções abstrata herdada pelo pai veiculo 
     def mover(self):
         if self.get_ipva():
             if self.get_combustivel() >= self.__gasto_motocicleta:
@@ -36,3 +40,6 @@ class Motocicleta(Veiculo_Motorizado):
         print(" "*self.get_distancia_percorrida() + "  , _oo")
         print(" "*self.get_distancia_percorrida() + ".-/c-//: :")
         print(" "*self.get_distancia_percorrida() + "(_)'=='(_)")
+    
+    def calcular_ipva(self):
+        self.valor =  self.VALOR_BASE * self.MOTOCICLETA
