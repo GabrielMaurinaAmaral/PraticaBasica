@@ -5,7 +5,7 @@ import time
 
 ESCAPE_KEY_ASCII = 27
 
-folder = 'C:\CODE\Exemplos_Curso_OPENCV\Python_OpenCV4\_base_mama/*'
+folder = 'C:\CODE\UniversoDiscreto\Exemplos_Curso_OPENCV\Python_OpenCV4\_base_mama/*'
 image_files_list = glob.glob(folder)
 def onChange(value):
     pass
