@@ -1,0 +1,30 @@
+---
+Formação Cientista de Dados
+MongoDB
+---
+
+```{r}
+#install.packages("mongolite") 
+library(mongolite)
+```
+Conexão
+```{r}
+conexao = mongo(collection = "posts", db = "dbmidias", url = "mongodb://localhost")
+```
+Dados
+```{r}
+dados = conexao$find()
+class(dados)
+dados
+```
+Busca
+```{r}
+dados = conexao$find('{"nome":"José"}')
+dados
+```
+Fecha a conexão
+```{r}
+#fecha conexão
+rm(conexao)
+gc()
+```

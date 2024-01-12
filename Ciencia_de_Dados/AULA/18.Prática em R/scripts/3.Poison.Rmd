@@ -1,0 +1,27 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Poisson
+---
+Distribuição de Poisson
+dpois = probabilidade pontual
+ppois = cumulativa
+lower.tail False = maior que, cauda direta da distribuição
+
+O número de acidentes em um dia é igual a 2, qual a proabilidade de ocorrerem 3 em 1 dia?
+```{r}
+dpois(3,lambda=2)
+```
+O número de acidentes em um dia é igual a 2, qual a proabilidade de ocorrerem 3 OU MENOS em 1 dia?
+```{r}
+ppois(3,lambda=2)
+```
+O número de acidentes em um dia é igual a 2, qual a proabilidade de ocorrerem MENOS DO QUE 3 em 1 dia?
+```{r}
+ppois(2,lambda = 2)
+dpois(0,lambda=2) + dpois(1,lambda=2) + dpois(2,lambda=2)
+```
+O número de acidentes em um dia é igual a 2, qual a proabilidade de ocorrerem MAIS DO QUE 3 em 1 dia?
+```{r}
+ppois(3,lambda=2, lower.tail = F) 
+1 - ppois(3,lambda=2) 
+```

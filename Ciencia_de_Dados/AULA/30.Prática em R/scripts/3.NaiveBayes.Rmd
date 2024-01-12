@@ -1,0 +1,56 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Naive Bayes
+---
+
+```{r}
+#install.packages("e1071")
+library(e1071)
+```
+Dados de Crédito de Banco Alemão
+```{r}
+credito = read.csv("Credit.csv")
+head(credito)
+dim(credito)
+```
+Transformamos a classe em fator
+```{r}
+credito$class = as.factor(credito$class)
+```
+Separamos dados de treino e teste
+```{r}
+amostra = sample(2,1000,replace=T, prob=c(0.7,0.3))
+amostra
+creditotreino = credito[amostra==1,]
+creditoteste = credito[amostra==2,]
+```
+Dimensões dos conjuntos
+```{r}
+dim(creditotreino)
+dim(creditoteste)
+```
+Criamos o modelo
+```{r}
+modelo <- naiveBayes(class ~., creditotreino)
+modelo
+```
+Previsão
+```{r}
+predicao <- predict(modelo,creditoteste)
+predicao
+```
+Matriz de Confusão
+```{r}
+confusao = table(creditoteste$class,predicao)
+confusao
+taxaacerto = (confusao[1] + confusao[4]) / sum(confusao)
+taxaerro = (confusao[2] + confusao[3]) / sum(confusao)
+taxaacerto
+taxaerro
+```
+
+
+```{r}
+```
+
+

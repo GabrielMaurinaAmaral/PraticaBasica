@@ -1,0 +1,34 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Amostragem Simples
+---
+Medidas de Centralidade e Variabilidade
+Dados dos jogadores
+```{r}
+jogadores = c(40000,18000,12000,250000,30000,140000,300000,40000,800000)
+```
+Média
+```{r}
+mean(jogadores)
+```
+Mediana
+```{r}
+median(jogadores)
+```
+Quartis
+```{r}
+quartis  = quantile(jogadores)
+quartis
+```
+3º quartil
+```{r}
+quartis[4]
+```
+Desvio padrão
+```{r}
+sd(jogadores)
+```
+Resumo
+```{r}
+summary(jogadores)
+```

@@ -1,0 +1,31 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Amostragem Simples
+---
+Amostra Sistemática
+```{r}
+#install.packages("TeachingSampling")
+library("TeachingSampling")
+```
+Amostra sistematica de tamanha 150, 10 grupos
+```{r}
+amostra = S.SY(150, 10)
+amostra
+```
+Tamanho
+```{r}
+dim(amostra)
+```
+Usamos em iris
+```{r}
+amostrairis = iris[amostra,]
+```
+Verificamos
+```{r}
+amostrairis
+```
+Tamanho
+```{r}
+dim(amostrairis)
+```
+

@@ -1,0 +1,38 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Amostragem Simples
+---
+Amostragem Estratificada
+```{r}
+#install.packages("sampling")
+library("sampling")
+```
+Proporção
+```{r}
+propocao = 25
+```
+Srswor amostra simples sem reposição, srswr com reposição, poisson, systematic
+a ordem de size é que está no conjunto de dados
+```{r}
+amostrairis2=strata(data=iris,
+                    stratanames=c("Species"),size=c(rep( propocao,3)), method="srswor")
+```
+Resultado
+```{r}
+summary(amostrairis2)
+```
+Dados de infertilidade
+```{r}
+infert
+summary(infert)
+```
+Amostragem por estratos de education
+```{r}
+amostra=strata(data=infert,
+               stratanames=c("education"),size=c(5,48,47), method="srswor")
+```
+Resultado
+```{r}
+amostra
+summary(amostra)
+```

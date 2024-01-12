@@ -1,0 +1,52 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Regressão Linear Simples
+---
+
+Cars: mostra a velocidade e distância de parada. 
+```{r}
+#install.packages("corrgram")
+library(corrgram)
+cars
+dim(cars)
+```
+Correlação entre distância e velocidade de parada
+```{r}
+cor(cars)
+corrgram(cars, order=TRUE, lower.panel=panel.shade,
+         upper.panel=panel.pie, text.panel=panel.txt,
+         main="Carros")
+```
+Geramos o modelo usando função lm
+Queremos prever a velocidade que o carro estava baseado na distância de parada
+Interceptação e Inclinação o quanto a variável depe. aumenta com o aumento da variavel indepenente
+```{r}
+modelo = lm(speed ~ dist, data=cars)
+modelo
+```
+Visualização da relação entre variáveis e linha de melhor ajuste
+```{r}
+#Executar com Crtrl+ Shift + Enter
+plot(speed ~ dist, data=cars, ylab = "Velocidade", xlab=" Distância", main="Carros")
+abline(modelo)
+```
+Podemos fazer uma previsão usando diretamente os coeficientes
+Qual velocidade se levou 22 pra parar?
+```{r}
+modelo$coefficients
+modelo$coefficients[1] + modelo$coefficients[2] * 22
+```
+Usando predict
+```{r}
+predict(modelo,data.frame(dist = 22))
+```
+Analisando melhor o modelo
+```{r}
+summary(modelo)
+modelo$coefficients
+modelo$residuals
+hist(modelo$residuals)
+modelo$fitted.values
+plot(modelo$fitted.values, cars$dist)
+```
+

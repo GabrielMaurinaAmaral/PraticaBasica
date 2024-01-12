@@ -1,0 +1,16 @@
+```{r}
+library(openxlsx)
+```
+
+```{r}
+# selecionando
+x = read.csv(file.choose(), header=TRUE, sep=',')
+x
+# achabdo por diretorio
+x = read.csv('Credit.csv', header=TRUE, sep=',')
+x
+```
+
+```{r}
+library(openxlsx)
+```

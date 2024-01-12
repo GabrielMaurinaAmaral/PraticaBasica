@@ -1,0 +1,34 @@
+```{r}
+getwd()
+setwd('C:/CODE/PraticaBasica/Ciencia_de_Dados')
+```
+
+```{r}
+class(iris)
+```
+
+```{r}
+class(iris)
+```
+
+```{r}
+iris_teste = iris
+
+save(iris_teste, file='iris_teste.rdata')
+
+rm(iris_teste)
+
+iris_teste
+```
+
+```{r}
+load(file='iris_teste.rdata')
+
+iris_teste
+```
+
+```{r}
+x=c(1,2,3,4,5,6,7,8,9,10,11,12)
+y=c(12,11,10,9,8,9,10,10,0,1,10,5)
+plot(x,y)
+```

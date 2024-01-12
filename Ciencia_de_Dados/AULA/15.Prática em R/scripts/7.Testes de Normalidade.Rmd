@@ -1,0 +1,60 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Amostragem Simples
+---
+Testes de Normalidade
+Repetir o experimento
+```{r}
+set.seed(123)
+```
+Gera mil variáveis normalmente distribuidas
+```{r}
+x = rnorm(1000)
+```
+Gráfico QQ
+```{r}
+#rodar com Ctrl+shift+enter
+qqnorm(x)
+#linha
+qqline(x)
+```
+Teste de Shapiro
+Valor de p acima de 0,05, não há indício para a não confirmar a hipótese nula de dados normalmente distribuidos
+```{r}
+shapiro.test(x) 
+```
+Histograma com linha de densidade
+```{r}
+#rodar com Ctrl+shift+enter
+hist(x, main="")
+par(new=TRUE)
+plot(density(x),ylab = "", xlab = "", axes=F, lwd=2.5 ) 
+```
+Dados não normalmente distribuidos
+```{r}
+#rodar com Ctrl+shift+enter
+#install.packages("semTools")
+library(semTools)
+m = mvrnonnorm(1000, c(1, 2), matrix(c(10, 2, 2, 5), 2, 2),
+                 skewness = c(5, 2), kurtosis = c(3, 3))
+qqnorm(m)
+qqline(m)
+```
+
+
+```{r}
+shapiro.test(m)
+```
+
+
+```{r}
+#rodar com Ctrl+shift+enter
+hist(m, main="")
+par(new=TRUE)
+plot(density(m),ylab = "", xlab = "", axes=F, lwd=2.5 ) 
+```
+
+
+```{r}
+```
+

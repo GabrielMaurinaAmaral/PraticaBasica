@@ -1,0 +1,50 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Métricas
+---
+
+```{r}
+#install.packages("igraph")
+library(igraph)
+```
+Métricas
+```{r}
+#carregamos um grafo de relacionamtos 53 vertices e 179 arestas
+grafo8 = read_graph("Grafo.graphml", format = c("graphml"))
+#53 vertices e 179 arestas
+grafo8
+plot(grafo8)
+#grau de entrada e saída 
+degree(grafo8, mode="all")
+#entrada
+degree(grafo8, mode="in")	
+#saída
+degree(grafo8, mode="out")
+
+#colocando o grau no tamanho do vértice
+grau  =  degree(grafo8, mode="in")	
+plot(grafo8, vertex.size=grau)
+```
+Mais métricas
+```{r}
+#diametro (maior distância entre diferentes vértices)
+diameter(grafo8, directed=T)
+diameter(grafo8, directed=F)
+
+#vértices que formam o diametro
+get_diameter(grafo8, directed=T)
+get_diameter(grafo8, directed=F)
+```
+Mais métricas
+```{r}
+#vizinhança, zero incluio o proprio vertice, mode all não considera a direção
+neighborhood(grafo8, 0, mode=c("all"))
+
+#densidade do grafo
+edge_density(grafo8)
+
+#teste de isomorfismo
+grafo9 = grafo8
+isomorphic(grafo8,grafo9)
+```
+

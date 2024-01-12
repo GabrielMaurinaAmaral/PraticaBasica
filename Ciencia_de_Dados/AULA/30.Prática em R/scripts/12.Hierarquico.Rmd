@@ -1,0 +1,36 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Hierárquico
+---
+
+```{r}
+#install.packages("gridExtra", dependencies=T)
+library(factoextra)
+```
+Cria o cluster
+```{r}
+hc = hcut(iris[,-5], k = 3, hc_method = "complete", stand=T)
+hc
+```
+Dendograma
+```{r}
+plot(hc)
+```
+Dendograma
+```{r}
+g1 =   fviz_dend(hc, show_labels = FALSE, rect = TRUE, ggtheme = theme_bw(), main="Cluster Hierárquico")
+plot(g1)
+```
+Cluster
+```{r}
+g2 = fviz_cluster(hc, ellipse.type = "norm", ggtheme = theme_bw(),
+                main="Cluster Hierárquico")
+plot(g2)
+```
+Comparação
+```{r}
+#Executar com ctrl + shift + enter
+plot(g1)
+plot(g2)
+```
+

@@ -1,0 +1,44 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Visualização
+---
+```{r}
+#install.packages("igraph")
+library(igraph)
+```
+Recria grafo anterior
+```{r}
+grafo7 <- graph(edges= c("Fernando", "Pedro", "José", "Antônio", "Fernando", "José","Fernando", "Antônio"))
+V(grafo7)$Peso = c(40,30,30,25)
+E(grafo7)$TipoAmizade = c("Amigo","Inimigo","Inimigo","Amigo")
+E(grafo7)$weight = c(1,2,1,3)
+V(grafo7)$type ="Humanos"
+```
+Várias formas de impressão
+```{r}
+#tamanho do vértice de acordo com o peso
+plot(grafo7, vertex.size=vertex_attr(grafo7)$Peso)
+#tamanho da areasta de acordo com o peso
+plot(grafo7, vertex.size=vertex_attr(grafo7)$Peso, edge.width=edge_attr(grafo7)$weight)
+```
+
+```{r}
+#cores aos vértices em um atributo
+vertex_attr(grafo7)$Cor = c("Blue", "Red", "Yellow", "Green")
+#plot com cores a partir do atributo
+plot(grafo7, vertex.size=vertex_attr(grafo7)$Peso, edge.width=edge_attr(grafo7)$weight, vertex.color= vertex_attr(grafo7)$Cor)
+```
+
+```{r}
+#curvado, titulo e frame
+plot(grafo7, vertex.size=vertex_attr(grafo7)$Peso, edge.width=edge_attr(grafo7)$weight, vertex.color= vertex_attr(grafo7)$Cor, edge.curved=0.4, frame=TRUE, main="Grafo")
+#vertice retângulo
+plot(grafo7, vertex.size=vertex_attr(grafo7)$Peso, edge.width=edge_attr(grafo7)$weight, vertex.color= vertex_attr(grafo7)$Cor, edge.curved=0.4, frame=TRUE, main="Grafo", vertex.shape="square")
+```
+Grafo interativo
+```{r}
+#grafo de relacionamentos
+grafo8 = read_graph("Grafo.graphml", format = c("graphml"))
+tkplot(grafo8)
+```
+

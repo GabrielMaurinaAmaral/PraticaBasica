@@ -1,0 +1,37 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Anova
+---
+Anova
+Carrega dados
+```{r}
+tratamento = read.csv("anova.csv", sep=";")
+tratamento
+```
+Visulizamos os distribuição dos remedios por horas
+```{r}
+boxplot(tratamento$Horas ~ tratamento$Remedio)
+```
+Executamos Análise de variância
+Observar valor de p maior que 0,05 (Pr(>F))
+Hipótese nula de que não há diferença significativa
+```{r}
+an =  aov(Horas ~ Remedio, data=tratamento)
+summary(an)
+```
+Anova de dois fatores
+Nenhum valor de P mostra diferença significativa
+```{r}
+an =  aov(Horas ~ Remedio * Sexo, data=tratamento)
+summary(an)
+```
+Se houver diferença o teste de Tukey é executado
+```{r}
+tukey = TukeyHSD(an)
+tukey
+```
+Gráficos do teste
+
+```{r}
+plot(tukey)
+```

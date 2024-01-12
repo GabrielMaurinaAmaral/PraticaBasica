@@ -1,0 +1,38 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Ensamble Learning
+---
+
+```{r}
+#install.packages('randomForest')
+library(randomForest)
+credito = read.csv('credit.csv')
+#transforma classe em fator
+credito$class = as.factor(credito$class)
+head(credito)
+```
+Separa dados de treino e teste
+```{r}
+amostra = sample(2,1000,replace=T, prob=c(0.7,0.3))
+creditotreino = credito[amostra==1,]
+creditoteste = credito[amostra==2,]
+```
+Gera o modelo
+```{r}
+floresta = randomForest(class ~ .,data=creditotreino, ntree=100,importance=T)
+floresta
+plot(floresta)
+```
+Previsão
+```{r}
+previsao = predict(floresta,creditoteste)
+previsao
+confusao = table(previsao,creditoteste$class)
+confusao
+```
+Avaliação de Performance
+```{r}
+taxaacerto = (confusao[1] + confusao[4]) / sum(confusao)
+taxaacerto
+```
+

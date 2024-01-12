@@ -1,0 +1,71 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Séries Temporais
+---
+
+```{r}
+#install.packages("forecast")
+library(forecast)
+```
+Conhecendo os dados
+```{r}
+AirPassengers
+start(AirPassengers)
+end(AirPassengers)
+frequency(AirPassengers)
+```
+Gráficos
+```{r}
+#Executar com Crtrl+ Shift + Enter
+plot(AirPassengers)
+plot(aggregate(AirPassengers))
+```
+Gera uma janela
+```{r}
+subst = window(AirPassengers,start=c(1960,1), end=c(1960,12))
+subst
+plot(subst)
+```
+Decomposição
+```{r}
+dec = decompose(AirPassengers)
+dec
+```
+
+
+```{r}
+attributes(dec)
+dec$seasonal
+```
+Analisando os elementos da decomposição
+```{r}
+#Executar com Crtrl+ Shift + Enter
+plot(dec)
+plot(dec$x)
+plot(dec$seasonal)
+plot(dec$trend)
+plot(dec$random)
+```
+Suavização Exponencial
+```{r}
+#suavização exponencial
+ets = ets(AirPassengers)
+ets
+```
+Previsão
+```{r}
+previsao = forecast(ets, h=12)
+plot(previsao)
+previsao
+```
+Arima
+```{r}
+arima = auto.arima(AirPassengers)
+arima
+```
+Previsão
+```{r}
+previsao = forecast(arima, h=12)
+plot(previsao)
+previsao
+```

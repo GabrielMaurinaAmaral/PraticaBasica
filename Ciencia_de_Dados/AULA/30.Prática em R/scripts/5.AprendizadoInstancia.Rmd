@@ -1,0 +1,41 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Aprendizado baseado em instância
+---
+
+```{r}
+#install.packages("class")
+library(class)
+```
+Iris
+```{r}
+head(iris)
+summary(iris)
+```
+Dividimos em treino e classificação
+```{r}
+amostra = sample(2,150,replace=T, prob=c(0.7,0.3))
+iristreino = iris[amostra==1,]
+iristeste = iris[amostra==2,]
+```
+Visualizamos as dimensões
+```{r}
+dim(iristreino)
+dim(iristeste)
+```
+Fazemos a classificação sem criar modelo
+Dados de treino (instâncias), dados de teste, classe real, número de vizinhos considerados
+
+```{r}
+previsao = knn(iristreino[,1:4],iristeste[,1:4],iristreino[,5],k=3)
+previsao
+```
+Matriz de confusão
+```{r}
+tabela = table(iristeste[,5],previsao)
+tabela
+```
+Avaliamos a performance
+```{r}
+(tabela[1] + tabela[5] + tabela[9]) / sum(tabela) 
+```

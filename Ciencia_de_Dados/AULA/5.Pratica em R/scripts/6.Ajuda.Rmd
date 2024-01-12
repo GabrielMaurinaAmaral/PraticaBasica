@@ -1,0 +1,10 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Ajuda
+---
+
+```{r}
+help(sd)
+head(iris)
+```
+

@@ -1,0 +1,71 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Deep Learning
+---
+
+```{r}
+#install.packages("h2o")
+library(h2o)
+```
+Importamos o arquivo para visualização
+```{r}
+#uso interno
+options(warn=-1)
+digitos <- read.csv(gzfile("test.csv.gz"), header=F)
+dim(digitos)
+head(digitos)
+```
+Visualizamos alguns digitos
+```{r}
+dig1 = t(matrix(unlist(digitos[20,-785]), nrow = 28, byrow = F))
+dig1 = t(apply(dig, 2, rev))
+dig1
+digitos[20,785]
+
+dig2 = t(matrix(unlist(digitos[2,-785]), nrow = 28, byrow = F))
+dig2 = t(apply(dig2, 2, rev))
+
+dig3 = t(matrix(unlist(digitos[4,-785]), nrow = 28, byrow = F))
+dig3 = t(apply(dig3, 2, rev))
+
+dig4 = t(matrix(unlist(digitos[5,-785]), nrow = 28, byrow = F))
+dig4 = t(apply(dig4, 2, rev))
+```
+Visualizamos as imagens
+```{r}
+#Executar com ctrl + shift + enter
+image(dig1, col = grey.colors(255))
+image(dig2,col=grey.colors(255))
+image(dig3,col=grey.colors(255))
+image(dig4,col=grey.colors(255))
+```
+Inicialização 
+```{r}
+h2o.init()
+treino <- h2o.importFile('train.csv.gz')
+teste <- h2o.importFile('test.csv.gz')
+dim(treino)
+head(treino)
+colnames(treino)
+#transforma a classe em fator
+treino[,785] <- as.factor(treino[,785])
+teste[,785] <- as.factor(teste[,785])
+
+```
+Modelo
+```{r}
+modelo <- h2o.deeplearning(x = colnames(treino[,1:784]),  y = "C785",  training_frame = treino,  validation_frame = teste,  distribution = "AUTO",  activation = "RectifierWithDropout",  hidden = c(64,64,64),  sparse = TRUE, epochs = 20)
+plot(modelo)
+```
+Performance do modelo
+```{r}
+h2o.performance(modelo)
+```
+Fazemos um teste, prevendo um novo valor
+
+```{r}
+treino[20,785]
+pred <- h2o.predict(modelo, newdata = treino[20,1:784])
+pred$predict
+```
+

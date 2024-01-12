@@ -1,0 +1,27 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Binomial
+---
+x = eventos, p = probabilidades, size = eventos
+Se jogar uma moeda 5 vezes, qual a prob. de dar cara 3 vezes?
+```{r}
+dbinom(x=3,size=5,prob=0.5)
+```
+Se eu passar 4 sinais de quatro tempos cada. Qual a probabilidade de eu pegar 0,1,2,3 e 4 sinais verdes?
+
+```{r}
+pbinom(q=4, size=4, prob=0.25)
+```
+Se você fizer a prova de um concurso com 12 questões. “chutando” todas as questões, qual a probabilidade de acertar 7 questões? (4 alternativas cada questão)
+
+```{r}
+dbinom(x=7,size=12,prob=0.25)
+```
+Se eu passar 4 sinais de quatro tempos cada. Qual a probabilidade de eu pegar 3 OU MAIS sinais verdes?
+
+```{r}
+pbinom(q=2, size=4, prob=0.25, lower.tail = F)
+dbinom(x=3,size=4,prob=0.25) + dbinom(x=4,size=4,prob=0.25)
+1 - pbinom(q=2, size=4, prob=0.25)
+```
+

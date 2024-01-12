@@ -1,0 +1,18 @@
+---
+Formação Cientista de Dados - Prof. Fernando Amaral
+Amostragem Simples
+---
+Pequenas e Grandes Amostras
+Espera-se uma média de 3,5
+Amostra pequena
+```{r}
+x = sample(1:6,6,replace = T)
+mean(x)
+```
+Amostra grande
+```{r}
+x = sample(1:6,10000,replace = T)
+mean(x)
+
+```
+

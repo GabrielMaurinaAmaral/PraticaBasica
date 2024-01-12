@@ -1,0 +1,16 @@
+```{r}
+#instala
+install.packages("e1071", lib='C:/CODE/PraticaBasica/Ciencia_de_Dados')
+library(e1071)
+```
+
+```{r}
+#descarrega
+detach("package:e1071", unload=TRUE)
+#remove
+remove.packages("e1071", lib='C:/CODE/PraticaBasica/Ciencia_de_Dados')
+```
+
+```{r}
+plot(iris[,1:4])
+```
